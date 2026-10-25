@@ -1,0 +1,35 @@
+---
+// src/components/ui/SectionTag.astro
+
+interface Props {
+  /** Texto que será exibido dentro da tag (ex: "02. Estratégia") */
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<span class="tag">{text}</span>
+
+<style>
+  .tag {
+    display: inline-block;
+    font-size: 0.85rem; /* Tamanho padrão (Desktop) */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-primary);
+    background-color: rgba(51, 94, 112, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  /* Ajuste para dispositivos móveis */
+  @media (max-width: 768px) {
+    .tag {
+      font-size: 0.8rem; /* Fonte um pouco menor no mobile */
+      padding: 0.3rem 0.8rem; /* Dica extra: reduza levemente o padding também */
+    }
+  }
+</style>

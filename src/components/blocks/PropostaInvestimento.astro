@@ -1,0 +1,396 @@
+---
+// src/components/PropostaInvestimento.astro
+
+// Define as propriedades esperadas pelo componente usando TypeScript
+interface Props {
+  nomePsicologa: string;
+}
+
+// Extrai a prop para ser usada no template
+const { nomePsicologa } = Astro.props;
+---
+
+<section class="proposta-investimento content-area">
+  <div class="container wrapper-proposta">
+    
+    <header class="section-header">
+      <h2 class="title">Investimento total</h2>
+    </header>
+
+    <!-- ACCORDION GROUP -->
+    <div class="accordion-group">
+      
+      <!-- ITEM 1: Investimento inicial (Aberto por padrão) -->
+      <details class="accordion-item" open>
+        <summary class="accordion-trigger">
+          <h3>Investimento inicial: R$2.950 (Único)</h3>
+          <span class="chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div class="accordion-content">
+          <ul class="main-list">
+            <li>
+              <strong>Consultoria profissional</strong>
+              <p class="list-desc">Isso inclui consultoria de estratégia, gestão, comunicação, precificação, posicionamento e marca no Instagram.</p>
+            </li>
+            <li>
+              <strong>Criação do site</strong>
+              <p class="list-desc" role="text">Foco estratégico em desempenho no Instagram.<br/>1 ano grátis de domínio (psi-{nomePsicologa.toLowerCase()}.com.br). Após esse período, R$40/ano.</p>
+            </li>
+            <li>
+              <strong>Configuração técnica para anunciar</strong>
+              <p class="list-desc">Ajuda e configuração das contas de anúncios profissionais no Instagram.<br/>Configuração técnica do site para preparar para Instagram Ads.</p>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- ITEM 2: Orçamento de anúncios (Fechado por padrão) -->
+      <details class="accordion-item">
+        <summary class="accordion-trigger">
+          <h3>Orçamento de anúncios: R$180/mês</h3>
+          <span class="chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div class="accordion-content">
+          <p class="text-block">É o valor inicial mínimo e o ideal. Com o passar dos meses, podemos decidir juntos aumentar o orçamento ou até pausar por alguns meses estrategicamente.</p>
+        </div>
+      </details>
+
+      <!-- ITEM 3: Recorrência do Serviço (Fechado por padrão) -->
+      <details class="accordion-item">
+        <summary class="accordion-trigger">
+          <h3>Investimento mensal do serviço: 2 meses grátis.</h3>
+          <span class="chevron">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div class="accordion-content">
+          <ul class="main-list">
+            <li>
+              <p class="list-desc">Depois é negociado um valor mensal até o seu pacote mensal de sessões.</p>
+            </li>
+            <li>
+              <p class="list-desc">O valor negociado é pensado para que você cresça financeiramente. O foco não é uma relação abusiva, mas uma relação equilibrada e benéfica entre ambos no longo prazo. Nosso contrato padrão não tem tempo mínimo de permanência a não ser do que já foi pago no mês. Não há multas de rescisão.</p>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+
+    <!-- INFORMATIVE CARDS GRID -->
+    <div class="info-cards-grid">
+      
+      <!-- Card A -->
+      <article class="info-card">
+        <h4>Por que desses valores?</h4>
+        <p>Comprovamos a capacidade de gerar R$5.195/mês extra ao psicólogo. Um investimento inicial de R$2.950 é mais do que justo e permite um crescimento próspero na clínica.</p>
+      </article>
+
+      <!-- Card B -->
+      <article class="info-card">
+        <h4>Não fazemos posts no Instagram:</h4>
+        <p>Nós damos apenas as diretrizes de como devem ser os posts no Instagram. Se você precisar de um designer, entre em contato que iremos buscar um para você.</p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .wrapper-proposta {
+    margin-top: 5rem;
+    margin-left: auto !important; /* Força a centralização caso o global não tenha */
+    margin-right: auto !important;
+  }
+
+  /* Limita a largura máxima em telas muito grandes para não ficar esticado demais (opcional, boa prática de UX) */
+  @media (min-width: 1024px) {
+    .wrapper-proposta {
+      max-width: 900px; 
+    }
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-boxed);
+  }
+
+  .title {
+    margin: 0;
+  }
+
+  /* ==========================================================================
+     Design Profissional do Accordion (Estilo Premium/SaaS)
+     ========================================================================== */
+  .accordion-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: var(--spacing-boxed);
+  }
+
+  .accordion-item {
+    background-color: var(--color-background);
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+    /* Corrigido: Substituído transparent por branco explícito */
+    border-left: 1px solid #E2E8F0; 
+  }
+
+  .accordion-item:hover {
+    border-color: #CBD5E1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  /* Estado: ABERTO */
+  .accordion-item[open] {
+    border-left: 4px solid var(--color-primary); /* Destaque da marca na lateral */
+    border-color: #CBD5E1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  /* Remove marcador padrão */
+  .accordion-trigger {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+  }
+  
+  .accordion-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion-trigger:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+    border-radius: 8px;
+  }
+
+  .accordion-trigger h3 {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    opacity: 0.7;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  }
+
+  .accordion-trigger:hover .chevron {
+    opacity: 1;
+  }
+
+  /* Animação do ícone ao abrir */
+  details[open] > .accordion-trigger .chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  /* Linha divisória suave que aparece ao abrir */
+  details[open] > .accordion-trigger {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #F1F5F9;
+    margin-bottom: 1rem;
+  }
+
+  /* Corpo do Conteúdo */
+  .accordion-content {
+    padding: 0 1.75rem 1.75rem 1.75rem;
+    animation: fadeInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInDown {
+    0%   { opacity: 0; transform: translateY(-8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Tipografia do Conteúdo */
+  .text-block {
+    margin: 0;
+    color: #475569; /* Cinza chumbo para leitura agradável */
+    line-height: 1.6;
+  }
+
+  .main-list {
+    margin: 0;
+    padding-left: 0;
+    list-style: none; /* Removemos os bullets padrão para um visual mais limpo */
+  }
+
+  .main-list > li {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  
+  .main-list > li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Bullet point customizado e moderno */
+  .main-list > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    opacity: 0.6;
+  }
+
+  .main-list > li strong {
+    display: block;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+
+  .list-desc {
+    margin: 0;
+    color: #475569;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  /* ==========================================================================
+     Cards Informativos (Rodapé)
+     ========================================================================== */
+  .info-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .info-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .info-card {
+    background-color: var(--color-background-alt);
+    border-radius: 8px;
+    padding: 2rem;
+    border-top: 3px solid var(--color-primary);
+  }
+
+  .info-card h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    color: var(--color-primary);
+  }
+
+  .info-card p {
+    margin: 0;
+    color: #334155;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  /* Ajustes Mobile */
+  @media (max-width: 767px) {
+    .wrapper-proposta{
+      margin-top: 2rem;
+      padding: 1rem;
+    }
+
+    .accordion-trigger {
+      padding: 1.25rem;
+    }
+    .accordion-trigger h3 {
+      font-size: 1.05rem;
+    }
+    .accordion-content {
+      padding: 0 1.25rem 1.25rem 1.25rem;
+    }
+    .info-card {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Selecionamos a seção e o primeiro accordion
+    const section = document.querySelector('.proposta-investimento');
+    const firstAccordion = document.querySelector('.accordion-group .accordion-item:first-child');
+
+    if (!section || !firstAccordion) return;
+
+    // 2. Função para animar o fechamento do <details> suavemente
+    const smoothClose = (detailsElement) => {
+      const content = detailsElement.querySelector('.accordion-content');
+      if (!content) return;
+
+      // Captura a altura exata do elemento renderizado
+      const startHeight = content.offsetHeight;
+      
+      // Prepara o elemento para a animação
+      content.style.height = `${startHeight}px`;
+      content.style.overflow = 'hidden';
+      content.style.transition = 'height 0.4s ease, padding 0.4s ease, opacity 0.4s ease';
+      
+      // Força o navegador a recalcular o layout (Reflow)
+      void content.offsetHeight; 
+      
+      // Aplica os valores finais da animação
+      content.style.height = '0px';
+      content.style.paddingTop = '0px';
+      content.style.paddingBottom = '0px';
+      content.style.opacity = '0';
+      
+      // Aguarda o fim da animação (400ms) para fechar de fato e limpar os estilos
+      setTimeout(() => {
+        detailsElement.removeAttribute('open');
+        // Reseta a tag style para não quebrar a reabertura pelo usuário
+        content.removeAttribute('style');
+      }, 400); 
+    };
+
+    // 3. Configuramos o IntersectionObserver para disparar no scroll
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        // Quando 40% da seção estiver visível na tela
+        if (entry.isIntersecting) {
+          
+          // Damos um pequeno delay de 600ms para o usuário perceber que estava aberto
+          setTimeout(() => {
+            // Verifica se o usuário não fechou manualmente antes do delay
+            if (firstAccordion.hasAttribute('open')) {
+              smoothClose(firstAccordion);
+            }
+          }, 700);
+          
+          // Desconectamos o observer para rodar apenas uma vez, poupando CPU
+          obs.disconnect(); 
+        }
+      });
+    }, {
+      threshold: 0.4 // Define que 40% do elemento precisa estar na tela
+    });
+
+    // Inicia a observação
+    observer.observe(section);
+  });
+</script>

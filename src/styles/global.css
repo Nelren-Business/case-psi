@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Design Tokens (Variáveis Globais)
+   ========================================================================== */
+:root {
+  /* Paleta de Cores */
+  --color-primary: #05435e; /* Antigo palette1, 2, 3 */
+  --color-text-main: #000000; /* Antigo palette4, 5, 6 */
+  --color-background-alt: #f2f2f2; /* Antigo palette7 */
+  --color-background: #ffffff; /* Antigo palette8, 9 */
+  
+  /* Cores de Destaque e Botões */
+  --color-success: #05435e; /* Antigo palette11 */
+  --color-info: #1159af; /* Antigo palette12 */
+  --color-danger: #b82105; /* Antigo palette13 */
+  --color-warning: #f7630c; /* Antigo palette14 */
+  --color-accent: #05435e; /* Antigo palette15 */
+
+  /* Tipografia */
+  --font-body: 'Poppins', sans-serif;
+  --font-heading: 'Domine', serif;
+  --font-fallback: sans-serif;
+
+  /* Layout & Espaçamento */
+  --container-max-width: 2000px;
+  --container-narrow-width: 80vw;
+  --spacing-edge: 2.99rem;
+  --spacing-boxed: 2.5rem;
+}
+
+/* Ajustes de variáveis para mobile */
+@media all and (max-width: 767px) {
+  :root {
+    --spacing-edge: 0rem;
+    --spacing-boxed: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   Resets e Base
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media all and (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Tipografia (Headings)
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 32px; color: var(--color-primary); }
+h2 { font-size: 32px; color: var(--color-primary); }
+h3 { font-size: 24px; color: var(--color-primary); }
+h4 { font-size: 21px; color: var(--color-primary); }
+h5 { font-size: 19px; color: var(--color-primary); }
+h6 { font-size: 17px; color: var(--color-primary); }
+
+@media all and (max-width: 767px) {
+  h1 { font-size: 27px; }
+  h2 { font-size: 27px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  h5 { font-size: 16px; }
+  h6 { font-size: 15px; }
+}
+
+/* ==========================================================================
+   Layout Global (Containers)
+   ========================================================================== */
+.container {
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-edge);
+  padding-right: var(--spacing-edge);
+}
+
+.container-narrow {
+  max-width: var(--container-narrow-width);
+}
+
+.content-area {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media all and (max-width: 767px) {
+  .content-area {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
+}
+
+/* ==========================================================================
+   Botões Globais
+   ========================================================================== */
+button, 
+.btn, 
+input[type="button"], 
+input[type="reset"], 
+input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  border: none;
+  padding: 0.8em 1.5em;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px -7px rgba(0,0,0,0);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+button:hover, 
+button:focus, 
+.btn:hover, 
+.btn:focus,
+input[type="submit"]:hover {
+  background-color: var(--color-primary); /* Ajuste se tiver uma cor de hover específica */
+  box-shadow: 0px 15px 25px -7px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+html {
+  scroll-behavior: smooth;
+}

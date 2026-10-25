@@ -1,0 +1,316 @@
+---
+import SectionTag from '../SectionTag.astro';
+import { Image } from 'astro:assets';
+import instagramImg from '../../assets/instagram.avif'; 
+---
+
+<section class="instagram-ads-section container content-area">
+  <div class="split-layout">
+    
+    <!-- ==========================================
+         COLUNA ESQUERDA (7 Colunas): Textos + Métricas
+         ========================================== -->
+    <div class="col-content">
+      <header class="section-header">
+        <SectionTag text="05. INSTAGRAM ADS" />
+        <h2>Diversificação e Expansão no Instagram</h2>
+        <p class="lead-body">Apesar do sucesso no Google Ads, a gente queria melhorar ainda mais. Em 1 mês de anúncios no Instagram:</p>
+      </header>
+
+      <div class="metrics-grid">
+        <!-- Métrica 1 -->
+        <article class="metric-card">
+          <!-- Modificado aqui -->
+          <span class="highlight-number animate-number" data-target="14" data-prefix="+" data-suffix="%">0%</span>
+          <h3 class="metric-label">Valor da Sessão</h3>
+          <p class="metric-subtext">Aumento do valor da sessão em apenas 1º mês.</p>
+        </article>
+
+        <!-- Métrica 2 -->
+        <article class="metric-card">
+          <!-- Modificado aqui -->
+          <span class="highlight-number animate-number" data-target=81" data-prefix="" data-suffix="%">0%</span>
+          <h3 class="metric-label">Redução de custo</h3>
+          <p class="metric-subtext">Diminuição de R$305 para R$60 por paciente captado.</p>
+        </article>
+
+        <!-- Métrica 3 (Largura Total - Span 2) -->
+        <article class="metric-card full-width">
+          <span class="highlight-number">2ª Fonte</span>
+          <h3 class="metric-label">Estabilidade e Resiliência na Clínica</h3>
+          <p class="metric-subtext">O psicólogo pode captar pacientes pelo Instagram Ads e Google Ads.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         COLUNA DIREITA (5 Colunas): Mockup Smartphone Antigo
+         ========================================== -->
+    <div class="col-visual">
+      <div class="image-column">
+        <Image 
+          src={instagramImg} 
+          alt="Anúncio no Feed do Instagram do Psicólogo" 
+          class="instagram-proof-image"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ==========================================================================
+     Layout e Grid System (Arquitetura 7/5)
+     ========================================================================== */
+  .instagram-ads-section {
+    margin-top: 8rem;
+  }
+
+  .split-layout {
+    display: grid;
+    /* Grid de 12 colunas: Esquerda (7) / Direita (5) */
+    grid-template-columns: 7fr 5fr;
+    gap: 32px;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* ==========================================================================
+     Coluna Esquerda - Tipografia e Métricas
+     ========================================================================== */
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding-right: 2rem; /* Separação sutil do mockup na versão desktop */
+  }
+
+  .metric-card {
+    background-color: var(--color-background-alt);
+    border: 1px solid rgba(0,0,0,0.03);
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .metric-card.full-width {
+    grid-column: span 2; /* Ocupa a base do card */
+  }
+
+  .highlight-number {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 2.5vw, 3rem);
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .metric-label {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .metric-subtext {
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    opacity: 0.7;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ==========================================================================
+     Coluna Direita - Mockup de Smartphone CSS (Estilo Anterior)
+     ========================================================================== */
+  .col-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+  }
+
+  .image-column {
+    position: relative; 
+    width: 100%;
+    max-width: 300px; 
+    aspect-ratio: 9 / 18.5; 
+    border-radius: 38px; 
+    overflow: hidden; 
+    
+    /* Construção da "carcaça" do celular */
+    background-color: #343434;
+    border: 4px solid #343434; 
+    box-shadow: 
+      0 0 0 2px #d1d5db, 
+      0 20px 40px rgba(0, 0, 0, 0.15); 
+  }
+
+  /* O Notch / Dynamic Island no topo */
+  .image-column::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 16px;
+    background-color: #343434;
+    border-radius: 8px;
+    z-index: 10; 
+  }
+
+  /* A barra de Home (padrão iOS) no fundo */
+  .image-column::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); 
+    z-index: 10;
+  }
+
+  .instagram-proof-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ajustado para preencher todo o container */
+    object-fit: cover; /* Garante que a imagem preencha o celular sem distorcer */
+    object-position: center top; 
+    z-index: 1; 
+  }
+
+  /* ==========================================================================
+     Responsividade (Tablet & Mobile)
+     ========================================================================== */
+  @media (max-width: 1199px) {
+    .split-layout {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .metrics-grid {
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    /* ADICIONE ESTE BLOCO */
+    .section-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Garante que o SectionTag fique no centro */
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    /* ATUALIZE O LEAD-BODY (Adicione o margin auto) */
+    .lead-body {
+      font-size: 1rem;
+      margin: 1rem auto 0; /* Centraliza o bloco respeitando o max-width */
+    }
+
+    .metric-subtext {
+      font-size: 0.90rem;
+    }
+
+    .highlight-number{
+      font-size: clamp(2rem, 3vw, 3.5rem);
+    }
+
+    .instagram-ads-section {
+      margin-top: 5rem;
+      padding: 1rem;
+    }
+
+    .metrics-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .metric-card.full-width {
+      grid-column: 1; /* Retira o Span 2 no mobile */
+    }
+  }
+</style>
+
+<script>
+  function initNumberAnimation() {
+    const elements = document.querySelectorAll('.animate-number');
+    
+    // Configuração do observador (dispara quando 20% do card estiver visível)
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.getAttribute('data-target') || '0', 10);
+          const prefix = el.getAttribute('data-prefix') || '';
+          const suffix = el.getAttribute('data-suffix') || '';
+          
+          // Duração da animação em ms
+          const duration = 2000;
+          let startTimestamp: number | null = null;
+
+          // Função de Easing (Ease Out Quart) para desaceleração suave
+          const easeOutQuart = (t: number) => 1 - (--t) * t * t * t;
+
+          const step = (timestamp: number) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            
+            // Aplica o Easing no progresso
+            const easeProgress = easeOutQuart(progress);
+            const currentNumber = Math.floor(easeProgress * target);
+
+            el.innerText = `${prefix}${currentNumber}${suffix}`;
+
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else {
+              // Garante o valor exato no final
+              el.innerText = `${prefix}${target}${suffix}`;
+            }
+          };
+
+          window.requestAnimationFrame(step);
+          
+          // Desobserva o elemento após animar (ocorre apenas uma vez)
+          observer.unobserve(el);
+        }
+      });
+    }, observerOptions);
+
+    elements.forEach(el => observer.observe(el));
+  }
+
+  // Executa ao carregar a página
+  document.addEventListener('DOMContentLoaded', initNumberAnimation);
+  
+  // Executa caso esteja usando Astro View Transitions
+  document.addEventListener('astro:page-load', initNumberAnimation);
+</script>

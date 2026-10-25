@@ -1,0 +1,447 @@
+---
+// ResultadoGeral.astro
+// Este componente renderiza a Seção 03: Resultado Geral, detalhando a curva em J do faturamento.
+import SectionTag from '../SectionTag.astro';
+import CardPeriodTag from '../CardPeriodTag.astro';
+
+// 1. Dados do Gráfico (Fácil manutenção para o futuro)
+const dataPoints = [
+  132, -125, 57, 531, 294, 321, 211,
+  1281, 1702, 1916, 2513, 2905, 3217, 3335, 4152, 4019, 4058, 5195
+];
+
+// 2. Lógica Server-Side para Geração do SVG (0kb de JS no render inicial)
+const width = 1000;
+const height = 600;
+const padding = { top: 60, right: 40, bottom: 50, left: 80 };
+const chartWidth = width - padding.left - padding.right;
+const chartHeight = height - padding.top - padding.bottom;
+
+// Definindo os limites do Eixo Y baseados nos dados (com margem de respiro)
+const minY = -500;
+const maxY = 5500;
+const rangeY = maxY - minY;
+
+// Funções utilitárias de mapeamento (Index/Valor -> Coordenadas X/Y)
+const getX = (index) => padding.left + (index * (chartWidth / (dataPoints.length - 1)));
+const getY = (value) => padding.top + chartHeight - (((value - minY) / rangeY) * chartHeight);
+
+// Posição do eixo zero e índice do ponto de virada
+const zeroY = getY(0);
+const turnPointIndex = 7; // Mês 8 (0-indexed)
+
+// Construção da string do Path do SVG
+const pathD = dataPoints.map((val, i) => `${i === 0 ? 'M' : 'L'} ${getX(i)} ${getY(val)}`).join(' ');
+
+const yAxisTicks = [0, 1000, 2000, 3000, 4000, 5000];
+---
+
+<section class="resultado-geral container content-area" aria-labelledby="resultado-titulo">
+  <!-- Cabeçalho da Seção -->
+  <header class="resultado-geral__header">
+    <SectionTag text="04. Resultado Geral" />    
+    <h2 id="resultado-titulo" class="resultado-geral__title">
+      Estabilidade na clínica em 1 ano e meio com ética
+    </h2>
+    <p class="resultado-geral__subtitle">
+      Inicialmente os resultados não foram bons, mas ao longo dos meses foi melhorando gradualmente de forma não-linear até fechar a agenda do psicólogo e consolidar o profissional na área.
+    </p>
+  </header>
+
+  <!-- Metric Cards (KPIs) -->
+  <div class="resultado-geral__metrics">
+    <div class="metric-card">
+      <p class="metric-card__value">+R$ 5.195 <span>/mês</span></p>
+      <p class="metric-card__desc">Renda extra mensal gerada com ética</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-card__value">↑ Aliança terapêutica</p>
+      <p class="metric-card__desc">Pacientes acima de 5 meses na psicoterapia</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-card__value">Agenda fechada</p>
+      <p class="metric-card__desc">Com aumento de 33,33% no valor da sessão</p>
+    </div>
+  </div>
+
+  <!-- Gráfico Interativo / Narrativa Visual -->
+  <div class="resultado-geral__chart-wrapper">
+    <h3 class="chart-title">Renda Mensal do Psicólogo Gerada pelos Anúncios</h3>
+    <p class="chart-note">*descontado o orçamento de anúncios no período.</p>
+    
+    <div class="chart-container">
+      <svg viewBox={`0 0 ${width} ${height}`} class="revenue-chart" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Seta do Ponto de Virada -->
+          <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-success)" />
+          </marker>
+        </defs>
+
+        <!-- Eixo Y: Grid Lines & Labels -->
+        {yAxisTicks.map(tick => (
+          <g class="chart-grid">
+            <line x1={padding.left} y1={getY(tick)} x2={width - padding.right} y2={getY(tick)} stroke="var(--color-text-main)" opacity="0.15" stroke-dasharray="4 4" />
+            <text x={padding.left - 15} y={getY(tick) + 4} text-anchor="end" font-size="12" fill="var(--color-text-main)" opacity="0.6" font-family="var(--font-body)">
+              R$ {tick.toLocaleString('pt-BR')}
+            </text>
+          </g>
+        ))}
+
+        <!-- Linha do Zero (Sólida) -->
+        <line x1={padding.left - 10} y1={zeroY} x2={width - padding.right} y2={zeroY} stroke="var(--color-text-main)" opacity="0.3" stroke-width="2" />
+
+        <!-- Eixo X: Labels -->
+        {dataPoints.map((_, i) => (
+          <g class="chart-axis-x">
+            <line x1={getX(i)} y1={padding.top + chartHeight} x2={getX(i)} y2={padding.top + chartHeight + 6} stroke="var(--color-text-main)" opacity="0.2" stroke-width="2" />
+            <text x={getX(i)} y={padding.top + chartHeight + 25} text-anchor="middle" font-size="12" fill="var(--color-text-main)" opacity="0.6" font-family="var(--font-body)">
+              M{i + 1}
+            </text>
+          </g>
+        ))}
+
+        <!-- GRUPO ANIMADO: Linha, Pontos e Badge -->
+        <g class="chart-data-group">
+          <!-- Linha do Gráfico -->
+          <path d={pathD} fill="none" stroke="var(--color-primary)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+
+          <!-- Pontos de Dados -->
+          {dataPoints.map((val, i) => (
+            <circle
+              cx={getX(i)}
+              cy={getY(val)}
+              r={i === turnPointIndex ? "7" : "4.5"}
+              fill={i === turnPointIndex ? "var(--color-success)" : "var(--color-background)"}
+              stroke={i === turnPointIndex ? "var(--color-success)" : "var(--color-primary)"}
+              stroke-width={i === turnPointIndex ? "0" : "2.5"}
+              class={i === turnPointIndex ? "turn-point-pulse" : ""}
+            />
+          ))}
+
+          <!-- Badge "Ponto de Virada" -->
+          <g class="chart-badge">
+            <!-- Linha / Seta apontando para o ponto -->
+            <path d={`M ${getX(6.2)} ${getY(dataPoints[turnPointIndex]) - 45} L ${getX(turnPointIndex) - 4} ${getY(dataPoints[turnPointIndex]) - 8}`} stroke="var(--color-success)" stroke-width="2" marker-end="url(#arrow)" />
+            
+            <!-- Retângulo do Badge -->
+            <rect x={getX(6.2) - 85} y={getY(dataPoints[turnPointIndex]) - 85} width="170" height="42" rx="6" fill="var(--color-background)" stroke="var(--color-success)" stroke-width="1.5" />
+            
+            <!-- Textos do Badge -->
+            <text x={getX(6.2)} y={getY(dataPoints[turnPointIndex]) - 66} text-anchor="middle" font-size="12" font-weight="bold" fill="var(--color-success)" font-family="var(--font-body)">
+              Ponto de Virada (Mês 8)
+            </text>
+            <text x={getX(6.2)} y={getY(dataPoints[turnPointIndex]) - 50} text-anchor="middle" font-size="11" fill="var(--color-success)" opacity="0.9" font-family="var(--font-body)">
+              Subnicho LGBTQIA+
+            </text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Bento Cards: Otimizados para 2 colunas -->
+  <div class="resultado-geral__bento">
+    <article class="bento-card bento-card--primary">
+      <CardPeriodTag text="1º ao 7º Mês" variant="primary" />
+      <h4 class="bento-card__title">Otimizações e testes</h4>
+      <p class="bento-card__text">
+        O foco nesse período foi realizar testes para fazer os ajustes inteligentes do site e encontrar o perfil ideal de pacientes conforme o plano de ação. Foi um período de investimento em que mal teve retorno.
+      </p>
+    </article>
+
+    <article class="bento-card bento-card--success">
+      <CardPeriodTag text="8º ao 18º Mês" variant="success" />
+      <h4 class="bento-card__title">Crescimento Sustentável</h4>
+      <p class="bento-card__text">
+        A partir do 8º mês, fizemos as principais otimizações do site e validamos o perfil de paciente ideal (subnicho LGBTQIA+). Perceba que é um crescimento sólido, o que gera estabilidade na clínica.
+      </p>
+    </article>
+  </div>
+</section>
+
+<style>
+  /* ==========================================================================
+     Estilos Escopados do Componente (Scoped CSS)
+     ========================================================================== */
+  
+  .resultado-geral {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  /* --- Cabeçalho --- */
+  .resultado-geral__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .resultado-geral__title {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .resultado-geral__subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-main);
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+
+  /* --- Metric Cards --- */
+  .resultado-geral__metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .metric-card {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-background-alt);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+  }
+
+  .metric-card__value {
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .metric-card__value span {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: var(--color-text-main);
+    opacity: 0.6;
+  }
+
+  .metric-card__desc {
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  /* --- Gráfico Interativo --- */
+  .resultado-geral__chart-wrapper {
+    background-color: var(--color-background);
+    border-radius: 16px;
+    border: 1px solid var(--color-background-alt);
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+
+  .chart-title {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  .chart-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-main);
+    opacity: 0.6;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .chart-container {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--color-background);
+    /* Borda removida conforme solicitado */
+  }
+
+  .revenue-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+  }
+
+  /* --- Animação do Gráfico (Clip Path) --- */
+  .chart-data-group {
+    /* Esconde todo o conteúdo agrupado para a direita */
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Classe injetada via JS quando o gráfico entra na tela */
+  .resultado-geral__chart-wrapper.is-visible .chart-data-group {
+    /* Revela todo o conteúdo agrupado */
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* --- Bento Cards --- */
+  .resultado-geral__bento {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .bento-card {
+    background-color: var(--color-background);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border-left: 6px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-top: 1px solid var(--color-background-alt);
+    border-right: 1px solid var(--color-background-alt);
+    border-bottom: 1px solid var(--color-background-alt);
+  }
+
+  .bento-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-primary);
+  }
+
+  .bento-card__text {
+    font-size: 1rem;
+    color: var(--color-text-main);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .bento-card--primary {  
+    border-left-color: var(--color-primary);  
+  }
+
+  .bento-card--success {  
+    border-left-color: var(--color-success);  
+  }
+
+  @media all and (max-width: 767px) {
+    .resultado-geral {
+      gap: 0;
+    }
+
+    .resultado-geral__header {
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .resultado-geral__metrics {
+      padding: 1rem;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+
+    .resultado-geral__chart-wrapper {
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .resultado-geral__subtitle {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .metric-card__value {
+      font-size: 1.5rem;
+    }
+
+    .metric-card__value span {
+      font-size: 0.9rem;
+    }
+    
+    .chart-title {
+      font-size: 0.9rem;
+    }
+
+    .bento-card__text {
+      font-size: 0.9rem;
+    }
+
+    /* Garante que o SVG escale nativamente pelo viewBox sem scroll */
+    .chart-container {
+      width: 100%;
+      overflow: hidden; 
+    }
+    
+    .revenue-chart {
+      width: 100%;
+      min-width: auto; 
+      height: auto;
+    }
+
+  /* Ajuste de legibilidade dos eixos */
+    .chart-axis-x text,
+    .chart-grid text {
+      font-size: 22px; 
+    }
+
+    /* Textos da Badge alinhados com a caixa e com micro espaçamento */
+    .chart-badge text:nth-of-type(1) {
+      font-size: 20px;
+      /* X: -70px acompanha o deslocamento extra que você fez na caixa. 
+         Y: -4px sobe o título levemente para respirar */
+      transform: translate(-70px, -4px);
+    }
+
+    .chart-badge text:nth-of-type(2) {
+      font-size: 18px;
+      /* X: -70px acompanha a caixa. 
+         Y: +6px desce o subtítulo, criando o micro espaçamento exato entre eles */
+      transform: translate(-70px, 6px);
+    }
+
+    /* 
+      A CAIXA DO BADGE:
+      Aumentamos a altura (de 60px para 72px) para acomodar o novo espaçamento 
+      dos textos. O Y foi para -15px para expandir a caixa a partir do centro.
+    */
+    .chart-badge rect {
+      width: 270px; 
+      height: 72px; 
+      transform: translate(-120px, -15px); 
+    }
+
+    .resultado-geral__bento{
+      padding: 1rem;
+      gap: 2rem;
+    }
+  }
+</style>
+
+<script>
+  // Script leve rodando estritamente no Client-side para controlar a animação
+  const initChartObserver = () => {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target); // Garante que anime apenas 1 vez (performance)
+        }
+      });
+    }, { 
+      threshold: 0.4 // Dispara quando 40% do gráfico estiver visível na tela
+    });
+
+    const chartWrapper = document.querySelector('.resultado-geral__chart-wrapper');
+    if (chartWrapper) {
+      observer.observe(chartWrapper);
+    }
+  };
+
+  // Suporte duplo: Carregamento tradicional e View Transitions do Astro
+  document.addEventListener('DOMContentLoaded', initChartObserver);
+  document.addEventListener('astro:page-load', initChartObserver);
+</script>

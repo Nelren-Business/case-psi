@@ -1,0 +1,397 @@
+---
+// GoogleAdsJourney.astro
+// Componente com Storytelling Interativo Avançado (Vanilla JS + CSS Transitions)
+import SectionTag from '../SectionTag.astro';
+---
+
+<section class="ads-journey-section container">
+  <div class="content-area text-center">
+    <SectionTag text="02. Google Ads" />
+    <h2>A estratégia de captação de pacientes escolhida</h2>
+    <p class="subtitle">Inicialmente decidimos usar os anúncios na pesquisa do Google (Google Ads) para captar pacientes para o psicólogo. Veja como funciona:</p>
+  </div>
+
+  <div class="stepper-container">
+    <!-- Card 01 | A Busca -->
+    <article class="step-card hidden-step" data-step="1">
+      <div class="mockup-wrapper">
+        <div class="mockup mockup-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="typing-container">
+            <span class="typewriter-target"></span><span class="cursor">|</span>
+          </span>
+        </div>
+      </div>
+      <div class="step-content">
+        <h3>1. Busca no Google</h3>
+        <p>As pessoas que estão ativamente buscando por psicoterapia vão ao Google tentar encontrar um psicólogo.</p>
+      </div>
+    </article>
+
+    <!-- Card 02 | O Anúncio -->
+    <article class="step-card hidden-step" data-step="2">
+      <div class="mockup-wrapper">
+        <div class="mockup mockup-ad relative-box">
+          <span class="badge"><strong>Patrocinado</strong></span>
+          <div class="ad-title">Terapia Especializada | Psicólogo em São Paulo</div>
+          <div class="ad-url">www.seusite.com.br/terapia</div>
+          <div class="ad-desc">Atendimento acolhedor e focado em resultados. Especialista em ansiedade e depressão...</div>
+          
+          <!-- Ponteiro do Mouse com Troca de Estado (Seta -> Mãozinha) -->
+          <div class="mouse-pointer">
+            <!-- Seta Padrão -->
+            <svg class="cursor-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4L11.38 21.99C11.66 22.68 12.63 22.75 12.99 22.1L15.43 17.51L20.02 15.06C20.67 14.71 20.6 13.73 19.91 13.45L4 4Z" fill="black" stroke="white" stroke-width="2"/>
+            </svg>
+            <!-- Mãozinha (Cursor Link) - Escondida por padrão -->
+            <svg class="cursor-hand" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 11V3.5C10 2.67 10.67 2 11.5 2C12.33 2 13 2.67 13 3.5V10H14V5.5C14 4.67 14.67 4 15.5 4C16.33 4 17 4.67 17 5.5V10H18V7.5C18 6.67 18.67 6 19.5 6C20.33 6 21 6.67 21 7.5V15.5C21 19.09 18.09 22 14.5 22H10.5C7.46 22 5 19.54 5 16.5V12.5C5 11.67 5.67 11 6.5 11C7.33 11 8 11.67 8 12.5V14H9V11.5C9 10.67 9.67 10 10.5 10Z" fill="black" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="step-content">
+        <h3>2. Anúncio no Google</h3>
+        <p>Com Google Ads, podemos exibir um anúncio ético do psicólogo para quem está realmente buscando psicoterapia.</p>
+      </div>
+    </article>
+
+    <!-- Card 03 | O Site -->
+    <article class="step-card hidden-step" data-step="3">
+      <div class="mockup-wrapper">
+        <div class="mockup mockup-site relative-box">
+          <div class="site-header">
+            <div class="logo-wireframe"></div>
+            <div class="nav-wireframe"></div>
+          </div>
+          <!-- Janela com overflow para criar o efeito de scroll -->
+          <div class="site-scroll-window">
+            <div class="site-inner-scroll">
+              <div class="site-hero">
+                <div class="hero-image">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+                </div>
+                <div class="hero-text">
+                  <div class="wire-line thick"></div>
+                  <div class="wire-line"></div>
+                  <div class="wire-btn"></div>
+                </div>
+              </div>
+              <!-- Conteúdo extra escondido que vai subir -->
+              <div class="site-extra">
+                <div class="wire-line thick" style="width: 50%;"></div>
+                <div class="wire-line"></div>
+                <div class="wire-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-content">
+        <h3>3. Site Personalizado</h3>
+        <p>O clique no anúncio leva a um site personalizado do psicólogo que gera conexão, facilitando na aliança terapêutica.</p>
+      </div>
+    </article>
+
+    <!-- Card 04 | O Contato -->
+    <article class="step-card hidden-step" data-step="4">
+      <div class="mockup-wrapper">
+        <div class="mockup mockup-wpp">
+          <div class="wpp-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </div>
+          <div class="wpp-text">
+            <span class="wpp-name">Novo Paciente</span>
+            <div class="wpp-msg-wrapper">
+              <span class="wpp-typing">digitando...</span>
+              <span class="wpp-msg hidden-msg">Olá, quero agendar uma sessão</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-content">
+        <h3>4. Contato no WhatsApp</h3>
+        <p>O paciente dentro do seu perfil escolhido por afinidade entra em contato para saber mais da psicoterapia.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  /* ==========================================================================
+     Base e Layout do Stepper
+     ========================================================================== */
+  .ads-journey-section { padding-top: 4rem; padding-bottom: 4rem; overflow: hidden; }
+  .text-center { text-align: center; }
+  .subtitle { font-size: 1.1rem; color: var(--color-primary); opacity: 0.8; max-width: 600px; margin: 0 auto 3rem auto; }
+  .stepper-container { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; position: relative; z-index: 1; }
+  .step-card { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; text-align: center; }
+  .step-card:not(:last-child) .mockup-wrapper::after {
+    content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, transparent 100%); opacity: 0.2; z-index: -1; transform: translateY(-50%);
+  }
+  .step-content h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.25rem; }
+  .step-content p { font-size: 0.95rem; opacity: 0.8; }
+
+  /* ==========================================================================
+     Micro-mockups e Utilitários
+     ========================================================================== */
+  .mockup-wrapper { width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .mockup {
+    background: var(--color-background); border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 1rem; width: 100%; max-width: 250px; border: 1px solid var(--color-background-alt);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .relative-box { position: relative; overflow: hidden; } /* Previne que animações vazem do card */
+
+  /* 01. Barra de Busca */
+  .mockup-search { 
+    position: relative; /* Necessário para ancorar a lupa */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; /* Centraliza o typing-container */
+    border-radius: 24px; 
+    padding: 0.8rem 2.5rem; /* Aumentamos o padding lateral para o texto não sobrepor a lupa em telas muito pequenas */
+    font-size: 0.73rem; 
+    color: var(--color-text-main); 
+  }
+  .mockup-search svg { 
+    position: absolute; 
+    left: 1rem; /* Fixa a lupa na extrema esquerda */
+    color: #9aa0a6; 
+  }
+  .typing-container { 
+    white-space: nowrap; 
+    overflow: hidden; 
+    display: inline-flex; 
+    align-items: center; 
+  }
+  .cursor { 
+    animation: blink 1s infinite; 
+    font-weight: bold; 
+    margin-left: 2px; 
+    transition: opacity 0.3s;
+  }
+  .hide-cursor { opacity: 0 !important; animation: none !important; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* 02. Google Ads & Mouse */
+  .mockup-ad { text-align: left; font-family: var(--font-fallback); }
+  .badge { font-size: 0.65rem; color: var(--color-text-main); display: block; margin-bottom: 0.2rem; }
+  .ad-title { color: #1a0dab; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.1rem; transition: color 0.2s, transform 0.1s; display: inline-block; }
+  .ad-title-clicked { color: #551a8b; text-decoration: underline; } /* Cor roxa de link clicado */
+  .ad-url { color: #006621; font-size: 0.7rem; margin-bottom: 0.3rem; }
+  .ad-desc { color: #4d5156; font-size: 0.7rem; line-height: 1.3; }
+  
+  /* Novo Wrapper do Mouse */
+  .mouse-pointer {
+    position: absolute; right: -30px; bottom: -30px; width: 22px; height: 22px; z-index: 10;
+    opacity: 0; transform: translate(0, 0); pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+  }
+
+  /* Controle de Fade dos ícones internos */
+  .mouse-pointer svg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    transition: opacity 0.2s ease; /* Transição rápida para a troca de ícone */
+  }
+  .cursor-hand { opacity: 0; }
+  
+  /* Classe que o JS vai adicionar quando chegar no título */
+  .pointer-hovering .cursor-arrow { opacity: 0; }
+  .pointer-hovering .cursor-hand { opacity: 1; }
+
+  /* Ajuste de mira: Translada mais para a esquerda e para cima, na direção do ad-title */
+  .pointer-moving { opacity: 1; transform: translate(-170px, -110px); } 
+  .pointer-clicking { transform: translate(-170px, -110px) scale(0.85); }
+
+  /* 03. Site com Animação de Scroll */
+  .mockup-site { display: flex; flex-direction: column; gap: 0.5rem; }
+  .site-header { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 0.3rem; }
+  .logo-wireframe { width: 30px; height: 8px; background: var(--color-primary); border-radius: 2px; }
+  .nav-wireframe { width: 50px; height: 8px; background: #eee; border-radius: 2px; }
+  
+  .site-scroll-window { overflow: hidden; height: 50px; /* Mascara o conteúdo abaixo */ }
+  .site-inner-scroll { transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+  .site-scrolled { transform: translateY(-38px); } /* Executa o Scroll via JS */
+  
+  .site-hero { display: flex; gap: 0.5rem; align-items: center; margin-top: 0.2rem; }
+  .hero-image { width: 40px; height: 40px; background: var(--color-background-alt); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .hero-text { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+  .wire-line { width: 100%; height: 4px; background: #eee; border-radius: 2px; }
+  .wire-line.thick { height: 6px; background: #ccc; width: 80%; }
+  .wire-btn { width: 60%; height: 12px; background: var(--color-success); border-radius: 12px; margin-top: 0.2rem;}
+  .site-extra { margin-top: 15px; display: flex; flex-direction: column; gap: 0.4rem; opacity: 0.6;}
+
+  /* 04. WhatsApp & Troca de Mensagem */
+  .mockup-wpp { display: flex; align-items: center; gap: 0.6rem; background: #e8f7f0; border: 1px solid #c3e8d7; }
+  .wpp-icon { width: 38px; height: 38px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .wpp-text { text-align: left; display: flex; flex-direction: column; flex: 1; }
+  .wpp-name { font-size: 0.7rem; font-weight: bold; color: #000; }
+  
+  .wpp-msg-wrapper { position: relative; height: 14px; margin-top: 2px; }
+  .wpp-typing { position: absolute; left: 0; top: 0; font-size: 0.65rem; font-style: italic; color: #00796b; transition: opacity 0.3s; opacity: 0;}
+  .typing-active { opacity: 1; }
+  
+  .wpp-msg { position: absolute; left: 0; top: 0; font-size: 0.65rem; color: #444; line-height: 1.2; width: 100%; white-space: nowrap;}
+  .hidden-msg { opacity: 0; transform: translateY(4px); transition: opacity 0.3s ease, transform 0.3s ease; }
+  .visible-msg { opacity: 1; transform: translateY(0); }
+
+  /* ==========================================================================
+     Fade In (Intersection Observer Base)
+     ========================================================================== */
+  .hidden-step { opacity: 0; transform: translateY(30px); transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .visible-step { opacity: 1; transform: translateY(0); }
+
+  /* Transições Base Desktop (Cascata) */
+  .step-card:nth-child(1) { transition-delay: 0.1s; }
+  .step-card:nth-child(2) { transition-delay: 0.25s; }
+  .step-card:nth-child(3) { transition-delay: 0.4s; }
+  .step-card:nth-child(4) { transition-delay: 0.55s; }
+
+  /* ==========================================================================
+     Mobile
+     ========================================================================== */
+  @media all and (max-width: 767px) {
+    .ads-journey-section{
+      padding: 1rem;
+      margin-top: 4rem;
+    }
+    
+    .stepper-container { flex-direction: column; gap: 3rem; }
+    .mockup-wrapper { height: auto; margin-bottom: 1rem; }
+    .subtitle{
+      font-size: 0.9rem;
+    }
+    .step-card:not(:last-child) .mockup-wrapper::after {
+      width: 2px; height: 60px; top: 100%; left: 50%;
+      background: linear-gradient(180deg, var(--color-primary) 0%, transparent 100%); transform: translateX(-50%);
+    }
+    .mockup { max-width: 280px; }
+  }
+</style>
+
+<script>
+  // O cérebro da operação: Máquina de Estado Assíncrona no Client-Side
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // Utilitário para pausar execuções de forma limpa (não bloqueia a thread principal)
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    
+    // Variável global para controlar onde estamos na narrativa da animação
+    let timelineState = 0; 
+
+    // Função de checagem. Impede que o Card 2 comece antes do Card 1, mesmo se o 
+    // usuário tiver feito scroll rápido até o final da tela.
+    const waitForState = async (requiredState) => {
+      while (timelineState < requiredState) {
+        await sleep(100); // Polling amigável para a CPU
+      }
+    };
+
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          const stepNumber = parseInt(target.getAttribute('data-step') || '0');
+          
+          // Animação CSS (Fade Up)
+          target.classList.add('visible-step');
+          target.classList.remove('hidden-step');
+          
+          // Desregistra o observer imediatamente (só queremos animar 1x por visita)
+          observerInstance.unobserve(target);
+
+          /* ==============================================
+             Cronograma de Interações (Storytelling)
+             ============================================== */
+             
+          if (stepNumber === 1) {
+            // Card 1: Digitação -> Esconder Cursor
+            await sleep(400); // Espera o FadeUp acabar
+            const typeTarget = target.querySelector('.typewriter-target');
+            const cursor = target.querySelector('.cursor');
+            const textToType = "Psicólogo perto de mim";
+            
+            for (let i = 0; i < textToType.length; i++) {
+              typeTarget.textContent += textToType.charAt(i);
+              await sleep(45); // Velocidade da tecla
+            }
+            
+            await sleep(300); // Breve pausa após digitar
+            cursor.classList.add('hide-cursor'); // Some o cursor
+            
+            timelineState = 1; // Libera o próximo card
+          }
+          
+          if (stepNumber === 2) {
+            // Card 2: Mouse entra -> Muda p/ mãozinha -> Clica -> Efeito
+            await waitForState(1); // Só começa SE o card 1 já terminou
+            await sleep(400); // Breve período de respiro entre um card e outro
+            
+            const pointer = target.querySelector('.mouse-pointer');
+            const adTitle = target.querySelector('.ad-title');
+            
+            pointer.classList.add('pointer-moving'); // 1. Mouse viaja até o link
+            await sleep(800); // Aguarda a viagem terminar
+            
+            // 2. NOVA ETAPA: Transforma na "mãozinha" de link
+            pointer.classList.add('pointer-hovering');
+            await sleep(350); // Dá um tempo cognitivo pro usuário perceber a mudança
+            
+            pointer.classList.add('pointer-clicking'); // 3. Diminui escala (clica)
+            await sleep(150); 
+            
+            adTitle.classList.add('ad-title-clicked'); // Título do anúncio reage
+            await sleep(150);
+            
+            pointer.classList.remove('pointer-clicking'); // 4. Levanta o botão do mouse
+            await sleep(300);
+            
+            pointer.style.opacity = '0'; // Mouse some sutilmente
+            
+            timelineState = 2; // Libera o próximo card
+          }
+          
+          if (stepNumber === 3) {
+            // Card 3: Animação simulando usuário rolando a landing page
+            await waitForState(2); 
+            await sleep(500); 
+            
+            const scrollArea = target.querySelector('.site-inner-scroll');
+            scrollArea.classList.add('site-scrolled'); // Sobe o container interno (translada Y)
+            
+            await sleep(1000); // Tempo da transição
+            timelineState = 3;
+          }
+          
+          if (stepNumber === 4) {
+            // Card 4: "digitando..." -> Troca para mensagem real
+            await waitForState(3);
+            await sleep(500);
+            
+            const typingIndicator = target.querySelector('.wpp-typing');
+            const actualMsg = target.querySelector('.wpp-msg');
+            
+            typingIndicator.classList.add('typing-active'); // Mostra "digitando..."
+            await sleep(1200); // Fica assim por 1.2 segundos
+            
+            typingIndicator.classList.remove('typing-active'); // Esconde 
+            await sleep(200);
+            actualMsg.classList.add('visible-msg'); // Balão de mensagem de WhatsApp surge
+            actualMsg.classList.remove('hidden-msg');
+            
+            timelineState = 4; // Fim do Funil
+          }
+
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -5% 0px', threshold: 0.1 });
+
+    const cards = document.querySelectorAll('.step-card');
+    cards.forEach(card => observer.observe(card));
+  });
+</script>

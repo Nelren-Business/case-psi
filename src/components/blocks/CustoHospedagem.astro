@@ -1,0 +1,203 @@
+---
+import SectionTag from '../SectionTag.astro';
+---
+
+<section class="hospedagem-section container content-area" aria-labelledby="hospedagem-title">
+  <div class="section-header">
+    <SectionTag text="06. hospedagem do site" />
+    <h2 id="hospedagem-title" class="headline">Colocamos uma tecnologia de ponta no site do psicólogo</h2>
+    <p class="lead-text">
+      Como o site do psicólogo tinha sido feito por terceiros com vários de problemas técnicos, mudamos a tecnologia dele. Veja o resultado:
+    </p>
+  </div>
+
+  <div class="bento-grid">
+    <!-- Card 1: Economia / ROI -->
+    <div class="card">
+      <div class="icon-wrapper">
+        <!-- Ícone: Piggy Bank (Economia clara e com viés psicológico positivo) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.5-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"/>
+          <path d="M2 9v1c0 1.1.9 2 2 2h1"/>
+          <path d="M16 11h.01"/>
+        </svg>
+      </div>
+      <h3>Economia de R$2.154 em 5 anos</h3>
+      <p>
+        O site precisa ficar num local (hospedagem) e o psicólogo pagava R$35,90/mês. Migramos e cortamos esse custo.
+      </p>
+    </div>
+
+    <!-- Card 2: Segurança Cibernética -->
+    <div class="card">
+      <div class="icon-wrapper">
+        <!-- Ícone: Shield Lock (Line-art) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+          <path d="M12 12v3"/>
+          <circle cx="12" cy="11" r="1"/>
+        </svg>
+      </div>
+      <h3>Maior segurança contra hackers</h3>
+      <p>
+        A tecnologia utilizada é focada em segurança. Há infinitamente menos brechas de ataque hacker do que na tecnologia anterior.
+      </p>
+    </div>
+
+    <!-- Card 3: Performance & Conversão -->
+    <div class="card">
+      <div class="icon-wrapper">
+        <!-- Ícone: Gauge / Speed (Line-art) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m12 14 4-4"/>
+          <path d="M3.34 16a10 10 0 1 1 17.32 0"/>
+        </svg>
+      </div>
+      <h3>Mais rápido e mais pacientes</h3>
+      <p>
+        O site começou a carregar extremamente rápido. Os pacientes percebem o psicólogo mais profissional por conta disso.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ==========================================================================
+     Estilos do Componente (Scoped do Astro)
+     ========================================================================== */
+  
+  .hospedagem-section {
+    padding-top: 96px;
+    padding-bottom: 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Badge Kicker */
+  .kicker {
+    font-family: var(--font-fallback, monospace);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--color-primary);
+    background-color: rgba(5, 67, 94, 0.08);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+
+
+  .lead-text {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: var(--color-text-main);
+    opacity: 0.8;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ==========================================================================
+     Arquitetura do Bento Grid
+     ========================================================================== */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* Cartões com Alta Fidedignidade ao UX */
+  .card {
+    background-color: var(--color-background);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+
+  /* Ícones e Efeito de "Micro-Glow" */
+  .icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: rgba(5, 67, 94, 0.05);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+
+  .card h3 {
+    margin-bottom: 12px;
+    line-height: 1.3;
+    font-size: clamp(18px, 2vw, 20px);
+  }
+
+  .card p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-main);
+    opacity: 0.75;
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  /* ==========================================================================
+     Media Queries / Responsividade
+     ========================================================================== */
+  @media (max-width: 1023px) { /* Tablet */
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Último card ocupando a linha inteira */
+    .card:nth-child(3) {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 767px) { /* Mobile */
+    .hospedagem-section {
+      margin-top: 5rem;
+      padding: 1rem;
+    }
+
+    .card h3 {
+      line-height: 1.3;
+      font-size: 1.2rem;
+    }
+
+    .lead-text {
+      font-size: 1rem;
+    }
+
+    .bento-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Reseta grid-column do terceiro item */
+    .card:nth-child(3) {
+      grid-column: span 1;
+    }
+  }
+</style>

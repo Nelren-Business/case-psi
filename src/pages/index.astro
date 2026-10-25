@@ -1,0 +1,46 @@
+---
+
+import Layout from '../layouts/Layout.astro';
+
+// Importação dos blocos base para a Home
+import Hero from '../components/blocks/Hero.astro';
+import SituacaoInicial from '../components/blocks/SituacaoInicial.astro';
+import GoogleAds from '../components/blocks/GoogleAds.astro';
+import PlanejamentoEstrategico from '../components/blocks/PlanejamentoEstrategico.astro';
+import ResultadoGeral from '../components/blocks/ResultadoGeral.astro';
+import InstagramAds from '../components/blocks/InstagramAds.astro';
+import CustoHospedagem from '../components/blocks/CustoHospedagem.astro';
+import ProjetoFuturo from '../components/blocks/ProjetoFuturo.astro';
+import PropostaIntro from '../components/blocks/PropostaIntro.astro';
+import PropostaInvestimento from '../components/blocks/PropostaInvestimento.astro';
+import PropostaCondicoes from '../components/blocks/PropostaCondicoes.astro';
+import PropostaExpectativas from '../components/blocks/PropostaExpectativas.astro';
+
+
+// Exemplo de dado dinâmico
+const nomeCliente = "Liza";
+
+const PACKAGE_JSON_CONTENT = {
+  "name": "Case Psicologia",
+  "version": "0.0.1",
+  "description": "Projeto oficial da Nelren-Business"
+};
+---
+<Layout title={PACKAGE_JSON_CONTENT.name} description={PACKAGE_JSON_CONTENT.description}>
+    <main style="min-height: 100vh;">
+       
+        <Hero />
+        <SituacaoInicial/>
+        <GoogleAds />
+        <PlanejamentoEstrategico/>
+        <ResultadoGeral/>
+        <InstagramAds/>
+        <CustoHospedagem/>
+        <ProjetoFuturo/>
+        <PropostaIntro nomePsicologa={nomeCliente}/>
+        <PropostaInvestimento nomePsicologa={nomeCliente}/>
+        <PropostaCondicoes/>
+        <PropostaExpectativas/>
+
+    </main>
+</Layout>

@@ -1,0 +1,475 @@
+---
+// SituacaoInicial.astro
+import { Image } from 'astro:assets';
+
+// Importe a imagem do site antigo diretamente da sua pasta src/assets
+import siteAntigoImg from '../../assets/site-antigo.png'; 
+import SectionTag from '../SectionTag.astro';
+---
+
+<section id="case-completo" class="situacao-section" aria-labelledby="situacao-heading">
+  <div class="container situacao-grid">
+    
+    <!-- Coluna Esquerda: Cabeçalho + Cards de Dificuldade -->
+    <div class="content-column">
+      
+      <!-- Cabeçalho -->
+      <header class="situacao-header">
+        <SectionTag text="01. Situação Inicial" />
+        <h2 id="situacao-heading">Como o psicólogo chegou para nós</h2>
+        <p class="situacao-subtitle">
+          Do ponto de vista do marketing, foi um caso de extrema complexidade por conta das restrições severas de orçamento, necessidade de gerar confiança sem avaliações e ajustar o site sem tempo hábil.
+        </p>
+      </header>
+
+      <!-- Cards com empilhamento vertical explícito -->
+      <div class="cards-column">
+        <article class="card">
+          <h3>
+            <svg class="title-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon><line x1="2" y1="22" x2="22" y2="2"></line></svg>
+            Zero avaliações
+          </h3>
+          <p>Como ele era recém-formado, não havia possibilidade de ter avaliações de pacientes e do ponto de vista do marketing dificulta bastante.</p>
+        </article>
+
+        <article class="card">
+          <h3>
+            <svg class="title-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><path d="m15 7-6 6"></path><path d="m9 7 6 6"></path></svg>
+            Site com sérios problemas
+          </h3>
+          <p>O psicólogo trouxe um site feito por um terceiro que estava inadequado para focar no público de universitários que inicialmente queria e com uma comunicação um pouco comercial demais.</p>
+        </article>
+
+        <article class="card">
+          <h3>
+            <svg class="title-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+            Orçamento suficiente, mas restrito
+          </h3>
+          <p>Tinha um orçamento para investir mínimo adequado para não submeter a convênios e plataformas, mas exigia extrema proficiência em marketing para dar certo.</p>
+        </article>
+
+        <article class="card">
+          <h3>
+            <svg class="title-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a2 2 0 0 0-2 2v4"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Parceria de alta confiança
+          </h3>
+          <p>Capacidade de paciência, confiança e escuta reais do psicólogo no nosso trabalho foram essenciais para ter chegado nesses resultados.</p>
+        </article>
+      </div>
+
+    </div>
+
+    <!-- Coluna Direita (Browser Mockup + Site Antigo) -->
+    <div class="image-column">
+      <figure class="browser-mockup">
+        <div class="browser-header" aria-hidden="true">
+          <span class="dot close"></span>
+          <span class="dot minimize"></span>
+          <span class="dot expand"></span>
+        </div>
+        <div class="browser-content">
+          <Image 
+            src={siteAntigoImg} 
+            alt="Captura de tela demonstrando os problemas do site antigo" 
+            class="site-antigo-img zoomable-image"
+            loading="lazy"
+            decoding="async"
+            title="Clique para ampliar"
+          />
+          <!-- Novo Badge adicionado aqui -->
+          <span class="badge-site">Site Antigo</span>
+        </div>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<!-- Modal (Lightbox) para o Zoom da Imagem -->
+<div id="image-modal" class="zoom-modal" aria-hidden="true">
+  <button class="close-modal" aria-label="Fechar zoom da imagem">&times;</button>
+  <img id="modal-image" src="" alt="Zoom do Site Antigo" />
+</div>
+
+<style>
+  /* --- 1. Respiro Vertical Maior --- */
+  .situacao-section {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    background-color: var(--color-background); 
+  }
+
+  /* --- Grid de Layout --- */
+  .situacao-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 6.5rem;
+    align-items: stretch; 
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* --- Coluna Esquerda --- */
+  .content-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .situacao-header {
+    margin-bottom: 3.5rem; 
+  }
+
+  .situacao-header h2 {
+    margin-bottom: 1.25rem;
+    max-width: 90%; 
+  }
+
+  .situacao-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.7; 
+    color: var(--color-text-main);
+    opacity: 0.9; 
+    margin: 0;
+  }
+
+  .cards-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .card {
+    background-color: var(--color-background-alt); 
+    border-radius: 12px;
+    padding: 1.75rem 2rem; 
+    border: 1px solid rgba(0,0,0,0.03); 
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem; 
+  }
+
+  .card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; 
+    margin: 0; 
+  }
+
+  .title-icon {
+    flex-shrink: 0; 
+    color: var(--color-primary); 
+    opacity: 0.8; 
+  }
+
+  .card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.9; 
+  }
+
+  /* --- Coluna Direita (Mockup com Imagem) --- */
+  .image-column {
+    position: relative; 
+    width: 100%;
+  }
+
+  .browser-mockup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 25px 50px -12px rgba(5, 67, 94, 0.1); 
+    border: 1px solid rgba(0,0,0,0.06);
+    background-color: var(--color-background); 
+    
+    display: flex;
+    flex-direction: column;
+  }
+
+  .browser-header {
+    height: 2.5rem;
+    background-color: #f8fafc; 
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    flex-shrink: 0; 
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot.close { background-color: #ff5f56; }
+  .dot.minimize { background-color: #ffbd2e; }
+  .dot.expand { background-color: #27c93f; }
+
+  .browser-content {
+    position: relative; 
+    width: 100%;
+    flex: 1; 
+    min-height: 0; 
+    overflow: hidden;
+    background-color: #0f172a; 
+  }
+
+  .site-antigo-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    object-position: top center; 
+    display: block;
+    opacity: 0.82; 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
+  }
+
+  /* Classe para indicar que é clicável (zoom) */
+  .zoomable-image {
+    cursor: zoom-in;
+  }
+  
+  .zoomable-image:hover {
+    transform: scale(1.02); /* Efeito sutil de levantar no hover para indicar interatividade */
+  }
+
+  /* Restaura opacidade total ao passar o mouse */
+  .browser-mockup:hover .site-antigo-img {
+    opacity: 1;
+  }
+
+  /* --- Estilo do Badge "Site Antigo" --- */
+  .badge-site {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--color-primary, #111827);
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 10;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
+    
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .browser-mockup:hover .badge-site {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* --- Estilos do Modal de Zoom --- */
+  .zoom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.95); /* Fundo um pouco mais opaco e sofisticado */
+    z-index: 9999;
+    
+    /* Configuração para permitir scroll */
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    align-items: flex-start; /* Essencial: permite que a imagem gigante não corte o topo */
+    justify-content: center;
+    padding: 4rem 1rem; /* Dá espaço para o botão de fechar */
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .zoom-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Estado 1: Imagem contida na tela (Fit) */
+  .zoom-modal img {
+    max-width: 90vw;
+    max-height: 85vh; /* Força caber na tela verticalmente */
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    
+    cursor: zoom-in; /* Indica que o usuário pode ampliar mais */
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+    margin: auto; /* Ajuda a centralizar verticalmente no estado contido */
+  }
+
+  .zoom-modal.active img {
+    transform: scale(1);
+  }
+
+  /* Estado 2: Imagem expandida para leitura (Scroll) */
+  .zoom-modal img.zoomed-in {
+    max-height: none; /* Libera a altura total da imagem */
+    width: 100%;
+    max-width: 1200px; /* Largura ideal para leitura em desktop */
+    cursor: zoom-out; /* Indica que ao clicar vai reduzir */
+    margin: 0 auto; /* Remove a margem automática vertical para grudar no topo (flex-start) */
+  }
+
+  /* O botão precisa ter position: fixed para não rolar junto com a imagem gigante */
+  .close-modal {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+
+  .close-modal:hover {
+    background-color: #ff5f56;
+    transform: scale(1.1);
+  }
+
+  /* --- Responsividade --- */
+  @media (max-width: 1200px) {
+    .situacao-grid {
+      gap: 4rem; 
+    }
+  }
+
+  @media (max-width: 992px) {
+    .situacao-section {
+      padding: 1rem;
+    }
+
+    .situacao-subtitle{
+      font-size: 0.9rem;
+    }
+
+    .situacao-grid {
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+    }
+    
+    .image-column {
+      height: 450px; 
+    }
+  }
+
+  @media (max-width: 767px) {
+    .card {
+      padding: 1.5rem;
+    }
+    
+    .image-column {
+      height: 500px; 
+    }
+    
+    .badge-site {
+      top: 0.75rem;
+      left: 0.75rem; 
+      right: auto;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+    }
+
+    .situacao-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .situacao-header h2 {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const setupImageZoom = () => {
+    const triggerImg = document.querySelector('.zoomable-image');
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-image');
+    const closeBtn = document.querySelector('.close-modal');
+
+    if (!triggerImg || !modal || !modalImg || !closeBtn) return;
+
+    const openModal = () => {
+      modalImg.src = triggerImg.src; 
+      modalImg.classList.remove('zoomed-in'); // Garante que comece espremida
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { modalImg.src = ''; }, 300);
+    };
+
+    // Alterna entre "Caber na tela" e "Largura real para scroll"
+    const toggleZoom = (e) => {
+      e.stopPropagation(); // Evita que o clique vaze para o fundo do modal e feche-o
+      
+      const isZoomed = modalImg.classList.contains('zoomed-in');
+      
+      if (isZoomed) {
+        modalImg.classList.remove('zoomed-in');
+      } else {
+        modalImg.classList.add('zoomed-in');
+        // Joga a barra de rolagem levemente para o topo da imagem para facilitar a leitura
+        modal.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    // Listeners
+    triggerImg.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modalImg.addEventListener('click', toggleZoom);
+    
+    // Clicar no fundo escuro fora da imagem fecha o modal
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  };
+
+  document.addEventListener('astro:page-load', setupImageZoom);
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupImageZoom);
+  } else {
+    setupImageZoom();
+  }
+</script>

@@ -1,0 +1,24 @@
+---
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import myFavicon from '../assets/favicon.png';
+import FloatingButton from '../components/FloatingButton.astro';
+const favicon = await getImage({ src: myFavicon });
+
+const { title, description } = Astro.props;
+
+---
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href={favicon.src} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <FloatingButton />
+        <slot />
+    </body>
+</html>

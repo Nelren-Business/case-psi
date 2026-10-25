@@ -1,0 +1,39 @@
+---
+// src/components/ui/CardPeriodTag.astro
+
+interface Props {
+  /** O período a ser exibido (ex: "1º ao 7º Mês") */
+  text: string;
+  /** Variante visual para acompanhar o design do card pai */
+  variant?: 'primary' | 'success';
+}
+
+const { text, variant = 'primary' } = Astro.props;
+---
+
+<span class={`card-tag card-tag--${variant}`}>{text}</span>
+
+<style>
+  .card-tag {
+    display: inline-block;
+    font-size: 0.75rem; /* Menor que a SectionTag para hierarquia correta */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px; /* Menos arredondado para encaixar melhor no design de cards */
+    margin-bottom: 1rem;
+  }
+
+  /* Modificadores de cor usando as variáveis que você já possui no projeto */
+  .card-tag--primary {
+    color: var(--color-primary);
+    /* Usando color-mix para gerar um background translúcido automaticamente a partir da variável */
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
+
+  .card-tag--success {
+    color: var(--color-success);
+    background-color: color-mix(in srgb, var(--color-success) 10%, transparent);
+  }
+</style>
