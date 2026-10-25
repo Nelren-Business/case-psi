@@ -1,10 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // O seu domínio do GitHub Pages (substitua pelo seu usuário)
-  site: 'https://Nelren-Business.github.io',
+  // Substitua pelo seu subdomínio do Cloudflare Pages (ou domínio próprio)
+  site: 'https://psi-case.pages.dev',
   
-  // O nome do repositório (com a barra inicial). 
-  // Se o seu repositório for "SEU_USUARIO.github.io", pode remover a linha "base".
-  base: '/case-psi',
+  // Se você tinha a linha "base: '/NOME_DO_REPOSITORIO'", REMOVA ela!
 });
