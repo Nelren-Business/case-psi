@@ -1,0 +1,63 @@
+---
+// Voltando dois níveis (../../) para acessar a raiz do src/
+import Layout from '../../layouts/Layout.astro';
+
+// Importação dos blocos base para a Home
+import Hero from '../../components/blocks/Hero.astro';
+import SituacaoInicial from '../../components/blocks/SituacaoInicial.astro';
+import GoogleAds from '../../components/blocks/GoogleAds.astro';
+import PlanejamentoEstrategico from '../../components/blocks/PlanejamentoEstrategico.astro';
+import ResultadoGeral from '../../components/blocks/ResultadoGeral.astro';
+import InstagramAds from '../../components/blocks/InstagramAds.astro';
+import CustoHospedagem from '../../components/blocks/CustoHospedagem.astro';
+import ProjetoFuturo from '../../components/blocks/ProjetoFuturo.astro';
+import PropostaIntro from '../../components/blocks/PropostaIntro.astro';
+import PropostaInvestimento from '../../components/blocks/PropostaInvestimento.astro';
+import PropostaCondicoes from '../../components/blocks/PropostaCondicoes.astro';
+import PropostaExpectativas from '../../components/blocks/PropostaExpectativas.astro';
+
+// O JSON também está dois níveis para trás, dentro de data/
+import propostasData from '../../data/propostas.json';
+
+// O Astro vai criar uma página para cada item no JSON
+export function getStaticPaths() {
+  return propostasData.map((proposta) => ({
+    params: { cliente: proposta.slug },
+    props: { 
+        nomeFormatado: proposta.nome,
+        dataValidade: proposta.validade
+    },
+  }));
+}
+
+const { nomeFormatado, dataValidade } = Astro.props;
+---
+
+<Layout title={`Proposta - ${nomeFormatado}`} description="Proposta confidencial">
+    
+    {/* SCRIPT DE EXPIRAÇÃO - Roda no navegador do cliente */}
+    <script define:vars={{ dataValidade }}>
+        const dataExpiracao = new Date(dataValidade).getTime();
+        const agora = new Date().getTime();
+
+        if (agora > dataExpiracao) {
+            alert("O prazo de validade desta proposta expirou.");
+            window.location.href = '/'; 
+        }
+    </script>
+
+    <main style="min-height: 100vh;" id="conteudo-proposta">
+        <Hero />
+        <SituacaoInicial/>
+        <GoogleAds />
+        <PlanejamentoEstrategico/>
+        <ResultadoGeral/>
+        <InstagramAds/>
+        <CustoHospedagem/>
+        <ProjetoFuturo/>
+        <PropostaIntro nomePsicologa={nomeFormatado}/>
+        <PropostaInvestimento nomePsicologa={nomeFormatado}/>
+        <PropostaCondicoes/>
+        <PropostaExpectativas/>
+    </main>
+</Layout>
