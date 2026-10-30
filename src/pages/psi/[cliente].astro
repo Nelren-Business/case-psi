@@ -33,7 +33,7 @@ export function getStaticPaths() {
 const { nomeFormatado, dataValidade } = Astro.props;
 ---
 
-<Layout title={`Proposta - ${nomeFormatado}`} description="Proposta confidencial">
+<Layout title={`Estudo de caso - ${nomeFormatado}`} description="Proposta confidencial">
     
     {/* SCRIPT DE EXPIRAÇÃO - Roda no navegador do cliente */}
     <script define:vars={{ dataValidade }}>
