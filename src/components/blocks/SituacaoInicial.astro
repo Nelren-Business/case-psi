@@ -251,15 +251,15 @@ import SectionTag from '../SectionTag.astro';
   /* --- Estilo do Badge "Site Antigo" --- */
   .badge-site {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 1.25rem; /* Afastado um pouco mais da borda */
+    left: 1.25rem; 
     background-color: var(--color-primary, #111827);
     color: #ffffff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 1.10rem; /* Aumentado de 0.875rem */
+    font-weight: 600; /* Aumentado de 600 para mais destaque */
+    padding: 0.6rem 1.5rem; /* Aumentado para deixar o "botão" mais gordinho */
+    border-radius: 30px; /* Ajustado para manter o formato de pílula com o novo tamanho */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Sombra levemente mais forte */
     z-index: 10;
     letter-spacing: 0.5px;
     backdrop-filter: blur(4px);
@@ -390,11 +390,11 @@ import SectionTag from '../SectionTag.astro';
     }
     
     .badge-site {
-      top: 0.75rem;
-      left: 0.75rem; 
+      top: 1rem; /* Margem levemente maior no mobile */
+      left: 1rem; 
       right: auto;
-      font-size: 0.75rem;
-      padding: 0.3rem 0.8rem;
+      font-size: 1.05rem; /* Aumentado de 0.75rem para melhor leitura */
+      padding: 0.5rem 1.25rem; /* Espaçamento interno proporcionalmente maior */
     }
 
     .situacao-header {

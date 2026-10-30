@@ -50,7 +50,7 @@ def criar_proposta():
     salvar_dados(dados)
     
     print(f"\n✅ Sucesso! Proposta criada para {nome}.")
-    print(f"🔗 URL local: http://localhost:4321/propostas/{slug}")
+    print(f"🔗 URL local: http://localhost:4321/psi/{slug}")
     print(f"⏳ Expira em: {data_expiracao_final_do_dia.strftime('%d/%m/%Y às %H:%M')}")
 
 if __name__ == "__main__":
