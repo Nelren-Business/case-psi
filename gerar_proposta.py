@@ -43,7 +43,9 @@ def criar_proposta():
     nova_proposta = {
         "slug": slug,
         "nome": nome,
-        "validade": data_formatada
+        "validade": data_formatada,
+        "textoIntroducao": "",
+        "textoInvestimentoInicial": ""
     }
     
     dados.append(nova_proposta)

@@ -25,12 +25,15 @@ export function getStaticPaths() {
     params: { cliente: proposta.slug },
     props: { 
         nomeFormatado: proposta.nome,
-        dataValidade: proposta.validade
+        dataValidade: proposta.validade,
+        textoIntroducao: proposta.textoIntroducao,
+        textoInvestimentoInicial: proposta.textoInvestimentoInicial
     },
   }));
 }
 
-const { nomeFormatado, dataValidade } = Astro.props;
+// Desestruturação dos novos props recebidos
+const { nomeFormatado, dataValidade, textoIntroducao, textoInvestimentoInicial } = Astro.props;
 ---
 
 <Layout title={`Estudo de caso - ${nomeFormatado}`} description="Proposta confidencial">
@@ -55,8 +58,14 @@ const { nomeFormatado, dataValidade } = Astro.props;
         <InstagramAds/>
         <CustoHospedagem/>
         <ProjetoFuturo/>
-        <PropostaIntro nomePsicologa={nomeFormatado}/>
-        <PropostaInvestimento nomePsicologa={nomeFormatado}/>
+        <PropostaIntro 
+            nomePsicologa={nomeFormatado} 
+            textoIntroducao={textoIntroducao} 
+        />
+        <PropostaInvestimento 
+            nomePsicologa={nomeFormatado} 
+            textoInvestimentoInicial={textoInvestimentoInicial} 
+        />
         <PropostaCondicoes/>
         <PropostaExpectativas/>
     </main>

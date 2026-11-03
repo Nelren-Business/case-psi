@@ -2,6 +2,15 @@
   {
     "slug": "liza",
     "nome": "Liza",
-    "validade": "2026-12-31T23:59:59"
+    "validade": "2027-12-31T23:59:59",
+    "textoIntroducao": "",
+    "textoInvestimentoInicial": ""
+  },
+  {
+    "slug": "06-235399",
+    "nome": "Julia",
+    "validade": "2026-11-11T23:59:59",
+    "textoIntroducao": " É necessário também criar um novo site com uma tecnologia e estrutura mais adequada para Instagram, mas dá para manter o mesmo design e comunicação do seu site feito no Lovable.",
+    "textoInvestimentoInicial": "Criação do site inspirada no seu Instagram e site em Lovable."
   }
 ]

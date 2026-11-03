@@ -4,10 +4,11 @@
 // Define as propriedades esperadas pelo componente usando TypeScript
 interface Props {
   nomePsicologa: string;
+  textoInvestimentoInicial: string;
 }
 
 // Extrai a prop para ser usada no template
-const { nomePsicologa } = Astro.props;
+const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
 ---
 
 <section class="proposta-investimento content-area">
@@ -35,8 +36,12 @@ const { nomePsicologa } = Astro.props;
               <p class="list-desc">Consultoria em estratégia, gestão, comunicação, precificação, posicionamento e presença de marca no Instagram.</p>
             </li>
             <li>
-              <strong>Criação do site</strong>
-              <p class="list-desc" role="text">Foco estratégico em desempenho no Instagram.<br/>1 ano de domínio gratuito (psi-{nomePsicologa.toLowerCase()}.com.br). Após esse período: R$40/ano.</p>
+              <strong>Criação do site profissional</strong>
+              <p class="list-desc" role="text">
+                {textoInvestimentoInicial && <>{textoInvestimentoInicial}<br/></>}
+                Foco estratégico em desempenho no Instagram.<br/>
+                1 ano de domínio gratuito (ex: psi-{nomePsicologa.toLowerCase()}.com.br). Após esse período: R$40/ano.
+              </p>
             </li>
             <li>
               <strong>Configuração técnica para anúncios</strong>
@@ -140,7 +145,6 @@ const { nomePsicologa } = Astro.props;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     transition: all 0.3s ease;
-    /* Corrigido: Substituído transparent por branco explícito */
     border-left: 1px solid #E2E8F0; 
   }
 

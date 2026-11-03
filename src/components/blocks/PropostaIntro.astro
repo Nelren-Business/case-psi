@@ -2,10 +2,12 @@
 // Define as propriedades esperadas pelo componente usando TypeScript
 interface Props {
   nomePsicologa: string;
+  textoIntroducao: string;
 }
 
 // Extrai a prop para ser usada no template
 const { nomePsicologa } = Astro.props;
+const { textoIntroducao } = Astro.props;
 ---
 
 <section id="proposta" class="proposta-intro content-area" aria-labelledby="intro-title">
@@ -46,8 +48,8 @@ const { nomePsicologa } = Astro.props;
       <div class="card-block secondary-block">
         <span class="reason-label">Por quê?</span>
         <p class="reason-text">
-          Através desse estudo de caso desse psicólogo, o Instagram tende a ser mais eficiente e eficaz. 
-          Além disso, {nomePsicologa}, você já tem um perfil ativo e não há necessidade de postar toda hora.
+          O Instagram tende a ser mais eficiente e eficaz pela nossa experiência. 
+          Além disso, {nomePsicologa}, você já tem um perfil ativo e não há necessidade de postar toda hora.{textoIntroducao}
         </p>
       </div>
 
