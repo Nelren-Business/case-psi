@@ -20,29 +20,17 @@ def salvar_dados(dados: List[Dict[str, Any]]) -> None:
     with open(ARQUIVO_JSON, 'w', encoding='utf-8') as f:
         json.dump(dados, f, indent=2, ensure_ascii=False)
 
-def formatar_moeda(entrada: str) -> str:
-    """Formata uma string ou número para o padrão R$ 0.000,00"""
-    entrada_limpa = str(entrada).replace("R$", "").replace(" ", "")
-    if "." in entrada_limpa and "," in entrada_limpa:
-        entrada_limpa = entrada_limpa.replace(".", "").replace(",", ".")
-    elif "," in entrada_limpa:
-        entrada_limpa = entrada_limpa.replace(",", ".")
-    
-    try:
-        valor = float(entrada_limpa)
-        return f"R$ {valor:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
-    except ValueError:
-        return str(entrada)
-
-def obter_input_moeda(mensagem: str) -> str:
+def obter_input_texto(mensagem: str) -> str:
+    """Obtém um texto sem aplicar nenhuma formatação."""
     while True:
         entrada = input(mensagem).strip()
         if not entrada:
             print("❌ O valor não pode ficar em branco.")
             continue
-        return formatar_moeda(entrada)
+        return entrada
 
 def obter_input_inteiro(mensagem: str) -> int:
+    """Solicita e valida um número inteiro positivo."""
     while True:
         try:
             valor = int(input(mensagem).strip())
@@ -54,15 +42,16 @@ def obter_input_inteiro(mensagem: str) -> int:
             print("❌ Digite apenas números inteiros (ex: 7).")
 
 def processar_proposta(slug: str, nome: str, preco_investimento: str, orcamento_ads: str, dias_validade: int) -> None:
-    """Lógica central isolada para ser consumida tanto via CLI quanto interativo."""
-    preco_formatado = formatar_moeda(preco_investimento)
-    orcamento_formatado = formatar_moeda(orcamento_ads)
+    """Lógica central: recebe e salva os dados puros (crus) vindos do banco ou terminal."""
     
+    # O valor inteiro de dias é usado SOMENTE para o cálculo real de expiração
     data_expiracao = datetime.now() + timedelta(days=dias_validade)
     data_expiracao_final = data_expiracao.replace(hour=23, minute=59, second=59, microsecond=0)
     data_formatada = data_expiracao_final.isoformat()
 
     dados = carregar_dados()
+    
+    # Remove duplicadas por slug para atualização idempotente
     dados = [d for d in dados if d.get('slug') != slug]
     
     nova_proposta = {
@@ -71,9 +60,9 @@ def processar_proposta(slug: str, nome: str, preco_investimento: str, orcamento_
         "validade": data_formatada,
         "textoIntroducao": "",
         "textoInvestimentoInicial": "",
-        "PreçoInvestimentoInicial": preco_formatado,
-        "OrçamentoAdsMensal": orcamento_formatado,
-        "ValidadeProposta": f"{dias_validade} dias"
+        "PreçoInvestimentoInicial": str(preco_investimento),  # Vai puro (ex: "1.950")
+        "OrçamentoAdsMensal": str(orcamento_ads),             # Vai puro (ex: "180")
+        "ValidadeProposta": str(dias_validade)                # Vai puro (ex: "7") - sem " dias"
     }
     
     dados.append(nova_proposta)
@@ -81,16 +70,16 @@ def processar_proposta(slug: str, nome: str, preco_investimento: str, orcamento_
     
     print(f"\n✅ Proposta salva com sucesso para {nome}!")
     print(f"🔗 URL local: http://localhost:4321/psi/{slug}")
-    print(f"💼 Investimento Inicial: {preco_formatado}")
-    print(f"📢 Ads Mensal: {orcamento_formatado}")
-    print(f"⏳ Validade: {dias_validade} dias (Até {data_expiracao_final.strftime('%d/%m/%Y às %H:%M')})")
+    print(f"💼 Investimento Inicial: {preco_investimento}")
+    print(f"📢 Ads Mensal: {orcamento_ads}")
+    print(f"⏳ Validade: {dias_validade} (Até {data_expiracao_final.strftime('%d/%m/%Y às %H:%M')})")
 
 def criar_proposta_interativa() -> None:
     print("🚀 --- Gerador de Propostas Nelren-Business ---")
-    slug = input("1. Nome da URL (ex: hash): ").strip().lower()
-    nome = input("2. Nome do Cliente (ex: Marcos Silva): ").strip()
-    preco = obter_input_moeda("3. Preço do Investimento Inicial (ex: 5000): ")
-    orcamento = obter_input_moeda("4. Orçamento em Ads Mensal (ex: 1500): ")
+    slug = obter_input_texto("1. Nome da URL (ex: hash): ").lower()
+    nome = obter_input_texto("2. Nome do Cliente (ex: Marcos Silva): ")
+    preco = obter_input_texto("3. Preço do Investimento Inicial (ex: 1.950): ")
+    orcamento = obter_input_texto("4. Orçamento em Ads Mensal (ex: 180): ")
     dias = obter_input_inteiro("5. Validade da proposta em dias (ex: 7): ")
     
     if slug and nome:
