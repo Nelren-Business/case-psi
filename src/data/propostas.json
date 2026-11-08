@@ -28,5 +28,15 @@
     "PreçoInvestimentoInicial": "1.950",
     "OrçamentoAdsMensal": "180",
     "ValidadeProposta": "7"
+  },
+  {
+    "slug": "raqo3iep4zah",
+    "nome": "Leonardo",
+    "validade": "2026-11-22T23:59:59",
+    "textoIntroducao": "",
+    "textoInvestimentoInicial": "",
+    "PreçoInvestimentoInicial": "R$ 1,95",
+    "OrçamentoAdsMensal": "R$ 180,00",
+    "ValidadeProposta": "14 dias"
   }
 ]
