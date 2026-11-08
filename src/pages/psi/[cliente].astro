@@ -27,13 +27,24 @@ export function getStaticPaths() {
         nomeFormatado: proposta.nome,
         dataValidade: proposta.validade,
         textoIntroducao: proposta.textoIntroducao,
-        textoInvestimentoInicial: proposta.textoInvestimentoInicial
+        textoInvestimentoInicial: proposta.textoInvestimentoInicial,
+        PreçoInvestimentoInicial: proposta.PreçoInvestimentoInicial,
+        OrçamentoAdsMensal: proposta.OrçamentoAdsMensal,
+        ValidadeProposta: proposta.ValidadeProposta
     },
   }));
 }
 
 // Desestruturação dos novos props recebidos
-const { nomeFormatado, dataValidade, textoIntroducao, textoInvestimentoInicial } = Astro.props;
+const { 
+    nomeFormatado,
+    dataValidade,
+    textoIntroducao,
+    textoInvestimentoInicial,
+    PreçoInvestimentoInicial,
+    OrçamentoAdsMensal,
+    ValidadeProposta
+    } = Astro.props;
 ---
 
 <Layout title={`Estudo de caso - ${nomeFormatado}`} description="Proposta confidencial">
@@ -64,9 +75,13 @@ const { nomeFormatado, dataValidade, textoIntroducao, textoInvestimentoInicial }
         />
         <PropostaInvestimento 
             nomePsicologa={nomeFormatado} 
-            textoInvestimentoInicial={textoInvestimentoInicial} 
+            textoInvestimentoInicial={textoInvestimentoInicial}
+            PreçoInvestimentoInicial={PreçoInvestimentoInicial} 
+            OrçamentoAdsMensal={OrçamentoAdsMensal}  
         />
-        <PropostaCondicoes/>
+        <PropostaCondicoes
+            ValidadeProposta={ValidadeProposta}
+        />
         <PropostaExpectativas/>
     </main>
 </Layout>

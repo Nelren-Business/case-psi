@@ -4,20 +4,29 @@
     "nome": "Liza",
     "validade": "2027-12-31T23:59:59",
     "textoIntroducao": "",
-    "textoInvestimentoInicial": ""
+    "textoInvestimentoInicial": "",
+    "PreçoInvestimentoInicial": "40",
+    "OrçamentoAdsMensal": "18000",
+    "ValidadeProposta": "14"
   },
   {
     "slug": "06-234926",
     "nome": "Duda",
     "validade": "2026-11-11T23:59:59",
     "textoIntroducao": "",
-    "textoInvestimentoInicial": ""
+    "textoInvestimentoInicial": "",
+    "PreçoInvestimentoInicial": "1.950",
+    "OrçamentoAdsMensal": "180",
+    "ValidadeProposta": "7"
   },
   {
     "slug": "06-234573",
     "nome": "Giovanna",
     "validade": "2026-11-11T23:59:59",
     "textoIntroducao": " Como você disse que não tem muito capital para investir, o valor mínimo é R$40 (único) e R$180/mês. Você vai pagando o investimento inicial conforme vai vindo os pacientes pelo nosso serviço.",
-    "textoInvestimentoInicial": ""
+    "textoInvestimentoInicial": "",
+    "PreçoInvestimentoInicial": "1.950",
+    "OrçamentoAdsMensal": "180",
+    "ValidadeProposta": "7"
   }
 ]

@@ -1,14 +1,13 @@
 ---
-// src/components/PropostaInvestimento.astro
-
-// Define as propriedades esperadas pelo componente usando TypeScript
 interface Props {
   nomePsicologa: string;
   textoInvestimentoInicial: string;
+  PreçoInvestimentoInicial: string;
+  OrçamentoAdsMensal: string;
 }
 
 // Extrai a prop para ser usada no template
-const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
+const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, OrçamentoAdsMensal } = Astro.props;
 ---
 
 <section class="proposta-investimento content-area">
@@ -21,15 +20,18 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
     <!-- ACCORDION GROUP -->
     <div class="accordion-group">
       
-      <!-- ITEM 1: Investimento inicial (Aberto por padrão) -->
-      <details class="accordion-item" open>
+      <!-- ITEM 1: Investimento inicial (Fechado por padrão) -->
+      <details class="accordion-item">
         <summary class="accordion-trigger">
-          <h3>Investimento inicial: R$1.950 (único)</h3>
+          <h3>Investimento inicial: R${PreçoInvestimentoInicial} (único)</h3>
           <span class="chevron">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </span>
         </summary>
         <div class="accordion-content">
+          <p class="text-block accordion-intro">
+            Metade (½) do valor no início e metade (½) após a entrega dos serviços abaixo:
+          </p>
           <ul class="main-list">
             <li>
               <strong>Consultoria profissional</strong>
@@ -54,7 +56,7 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
       <!-- ITEM 2: Orçamento de anúncios (Fechado por padrão) -->
       <details class="accordion-item">
         <summary class="accordion-trigger">
-          <h3>Orçamento de anúncios: R$180/mês</h3>
+          <h3>Orçamento de anúncios: R${OrçamentoAdsMensal}/mês</h3>
           <span class="chevron">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </span>
@@ -109,11 +111,10 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
 <style>
   .wrapper-proposta {
     margin-top: 5rem;
-    margin-left: auto !important; /* Força a centralização caso o global não tenha */
+    margin-left: auto !important;
     margin-right: auto !important;
   }
 
-  /* Limita a largura máxima em telas muito grandes para não ficar esticado demais (opcional, boa prática de UX) */
   @media (min-width: 1024px) {
     .wrapper-proposta {
       max-width: 900px; 
@@ -153,14 +154,12 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
 
-  /* Estado: ABERTO */
   .accordion-item[open] {
-    border-left: 4px solid var(--color-primary); /* Destaque da marca na lateral */
+    border-left: 4px solid var(--color-primary);
     border-color: #CBD5E1;
     box-shadow: 0 4px 12px rgba(0,0,0,0.04);
   }
 
-  /* Remove marcador padrão */
   .accordion-trigger {
     list-style: none;
     cursor: pointer;
@@ -202,23 +201,25 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
     opacity: 1;
   }
 
-  /* Animação do ícone ao abrir */
   details[open] > .accordion-trigger .chevron {
     transform: rotate(180deg);
     opacity: 1;
   }
 
-  /* Linha divisória suave que aparece ao abrir */
   details[open] > .accordion-trigger {
     padding-bottom: 1rem;
     border-bottom: 1px solid #F1F5F9;
     margin-bottom: 1rem;
   }
 
-  /* Corpo do Conteúdo */
   .accordion-content {
     padding: 0 1.75rem 1.75rem 1.75rem;
     animation: fadeInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .accordion-intro {
+    font-weight: 500;
+    color: #334155;
   }
 
   @keyframes fadeInDown {
@@ -226,17 +227,16 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* Tipografia do Conteúdo */
   .text-block {
     margin: 0;
-    color: #475569; /* Cinza chumbo para leitura agradável */
+    color: #475569;
     line-height: 1.6;
   }
 
   .main-list {
-    margin: 0;
+    margin: 1.25rem 0 0 0;
     padding-left: 0;
-    list-style: none; /* Removemos os bullets padrão para um visual mais limpo */
+    list-style: none;
   }
 
   .main-list > li {
@@ -249,7 +249,6 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
     margin-bottom: 0;
   }
 
-  /* Bullet point customizado e moderno */
   .main-list > li::before {
     content: "";
     position: absolute;
@@ -276,9 +275,6 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
     font-size: 1rem;
   }
 
-  /* ==========================================================================
-     Cards Informativos (Rodapé)
-     ========================================================================== */
   .info-cards-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -312,7 +308,6 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
     font-size: 1rem;
   }
 
-  /* Ajustes Mobile */
   @media (max-width: 767px) {
     .wrapper-proposta{
       margin-top: 2rem;
@@ -333,68 +328,3 @@ const { nomePsicologa, textoInvestimentoInicial } = Astro.props;
     }
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // 1. Selecionamos a seção e o primeiro accordion
-    const section = document.querySelector('.proposta-investimento');
-    const firstAccordion = document.querySelector('.accordion-group .accordion-item:first-child');
-
-    if (!section || !firstAccordion) return;
-
-    // 2. Função para animar o fechamento do <details> suavemente
-    const smoothClose = (detailsElement) => {
-      const content = detailsElement.querySelector('.accordion-content');
-      if (!content) return;
-
-      // Captura a altura exata do elemento renderizado
-      const startHeight = content.offsetHeight;
-      
-      // Prepara o elemento para a animação
-      content.style.height = `${startHeight}px`;
-      content.style.overflow = 'hidden';
-      content.style.transition = 'height 0.4s ease, padding 0.4s ease, opacity 0.4s ease';
-      
-      // Força o navegador a recalcular o layout (Reflow)
-      void content.offsetHeight; 
-      
-      // Aplica os valores finais da animação
-      content.style.height = '0px';
-      content.style.paddingTop = '0px';
-      content.style.paddingBottom = '0px';
-      content.style.opacity = '0';
-      
-      // Aguarda o fim da animação (400ms) para fechar de fato e limpar os estilos
-      setTimeout(() => {
-        detailsElement.removeAttribute('open');
-        // Reseta a tag style para não quebrar a reabertura pelo usuário
-        content.removeAttribute('style');
-      }, 400); 
-    };
-
-    // 3. Configuramos o IntersectionObserver para disparar no scroll
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        // Quando 40% da seção estiver visível na tela
-        if (entry.isIntersecting) {
-          
-          // Damos um pequeno delay de 600ms para o usuário perceber que estava aberto
-          setTimeout(() => {
-            // Verifica se o usuário não fechou manualmente antes do delay
-            if (firstAccordion.hasAttribute('open')) {
-              smoothClose(firstAccordion);
-            }
-          }, 700);
-          
-          // Desconectamos o observer para rodar apenas uma vez, poupando CPU
-          obs.disconnect(); 
-        }
-      });
-    }, {
-      threshold: 0.4 // Define que 40% do elemento precisa estar na tela
-    });
-
-    // Inicia a observação
-    observer.observe(section);
-  });
-</script>
