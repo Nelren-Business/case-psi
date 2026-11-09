@@ -1,15 +1,5 @@
 [
   {
-    "slug": "liza",
-    "nome": "Liza",
-    "validade": "2027-12-31T23:59:59",
-    "textoIntroducao": "",
-    "textoInvestimentoInicial": "",
-    "PreçoInvestimentoInicial": "40",
-    "OrçamentoAdsMensal": "18000",
-    "ValidadeProposta": "14"
-  },
-  {
     "slug": "06-234926",
     "nome": "Duda",
     "validade": "2026-11-18T23:59:59",
