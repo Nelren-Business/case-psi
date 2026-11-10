@@ -1,9 +1,5 @@
 ---
-// Voltando dois níveis (../../) para acessar a raiz do src/
 import Layout from '../../layouts/Layout.astro';
-
-import MicrosoftClarity from '../../components/MicrosoftClarity.astro';
-
 // Importação dos blocos base para a Home
 import Hero from '../../components/blocks/Hero.astro';
 import SituacaoInicial from '../../components/blocks/SituacaoInicial.astro';
@@ -63,7 +59,6 @@ const {
     </script>
 
     <main style="min-height: 100vh;" id="conteudo-proposta">
-        <MicrosoftClarity />
         <Hero 
             nomePsicologa={nomeFormatado}
         />

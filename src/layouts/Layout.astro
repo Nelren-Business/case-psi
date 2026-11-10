@@ -7,10 +7,13 @@ const favicon = await getImage({ src: myFavicon });
 
 const { title, description } = Astro.props;
 
+import MicrosoftClarity from '../components/MicrosoftClarity.astro';
+
 ---
 <!doctype html>
 <html lang="pt-br">
     <head>
+        <MicrosoftClarity />
         <meta charset="UTF-8" />
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width" />

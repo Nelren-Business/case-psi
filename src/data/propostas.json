@@ -68,5 +68,15 @@
     "PreçoInvestimentoInicial": "1.950",
     "OrçamentoAdsMensal": "180",
     "ValidadeProposta": "7"
+  },
+  {
+    "slug": "jnc8scslfc7g",
+    "nome": "Gabriela",
+    "validade": "2026-11-24T23:59:59",
+    "textoIntroducao": "",
+    "textoInvestimentoInicial": "",
+    "PreçoInvestimentoInicial": "1.950",
+    "OrçamentoAdsMensal": "180",
+    "ValidadeProposta": "7"
   }
 ]
