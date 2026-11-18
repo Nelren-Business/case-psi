@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjetoFuturo from '../../components/blocks/ProjetoFuturo.astro';
+import PropostaIntro from '../../components/blocks/PropostaIntro.astro';
+import PropostaInvestimento from '../../components/blocks/PropostaInvestimento.astro';
+import PropostaExpectativas from '../../components/blocks/PropostaExpectativas.astro';
+
+// O JSON também está dois níveis para trás, dentro de data/
+import propostasData from '../../data/propostas.json';
+
+// O Astro vai criar uma página para cada item no JSON
+export function getStaticPaths() {
+  return propostasData.map((proposta) => ({
+    params: { cliente: proposta.slug },
+    props: { 
+        nomeFormatado: proposta.nome,
+        dataValidade: proposta.validade,
+        textoIntroducao: proposta.textoIntroducao,
+        textoInvestimentoInicial: proposta.textoInvestimentoInicial,
+        PreçoInvestimentoInicial: proposta.PreçoInvestimentoInicial,
+        OrçamentoAdsMensal: proposta.OrçamentoAdsMensal,
+        ValidadeProposta: proposta.ValidadeProposta
+    },
+  }));
+}
+
+// Desestruturação dos novos props recebidos
+const { 
+    nomeFormatado,
+    dataValidade,
+    textoIntroducao,
+    textoInvestimentoInicial,
+    PreçoInvestimentoInicial,
+    OrçamentoAdsMensal,
+    ValidadeProposta
+    } = Astro.props;
+---
+
+<Layout title={`Proposta - ${nomeFormatado}`} description="Proposta confidencial">
+    
+    {/* SCRIPT DE EXPIRAÇÃO - Roda no navegador do cliente */}
+    <script define:vars={{ dataValidade }}>
+        const dataExpiracao = new Date(dataValidade).getTime();
+        const agora = new Date().getTime();
+
+        if (agora > dataExpiracao) {
+            alert("O prazo de validade desta proposta expirou.");
+            window.location.href = '/'; 
+        }
+    </script>
+
+    <main style="min-height: 100vh;" id="conteudo-proposta">
+        <PropostaIntro 
+            nomePsicologa={nomeFormatado} 
+            textoIntroducao={textoIntroducao} 
+        />
+        <PropostaInvestimento 
+            nomePsicologa={nomeFormatado} 
+            textoInvestimentoInicial={textoInvestimentoInicial}
+            PreçoInvestimentoInicial={PreçoInvestimentoInicial} 
+            OrçamentoAdsMensal={OrçamentoAdsMensal}  
+        />
+        <PropostaExpectativas
+            ValidadeProposta={ValidadeProposta}
+        />
+    </main>
+</Layout>

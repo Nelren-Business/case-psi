@@ -20,38 +20,61 @@ const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, Orç
     <!-- ACCORDION GROUP -->
     <div class="accordion-group">
       
+      <!-- SINALIZAÇÃO: 1º e 2º mês -->
+      <div class="phase-divider">
+        <div class="phase-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>1º ao 2º mês</span>
+        </div>
+      </div>
+
       <!-- ITEM 1: Investimento inicial (Fechado por padrão) -->
       <details class="accordion-item">
         <summary class="accordion-trigger">
-          <h3>Investimento inicial: R${PreçoInvestimentoInicial} (único)</h3>
+          <h3>Configuração Inicial: R${PreçoInvestimentoInicial}/mês por 2 Meses</h3>
           <span class="chevron">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </span>
         </summary>
         <div class="accordion-content">
-          <p class="text-block accordion-intro">
-            Metade (½) do valor no início e metade (½) após a entrega dos serviços abaixo:
-          </p>
           <ul class="main-list">
             <li>
-              <strong>Consultoria profissional</strong>
-              <p class="list-desc">Consultoria em estratégia, gestão, comunicação, precificação, posicionamento e presença de marca no Instagram.</p>
+              <strong>Consultoria</strong>
+              <p class="list-desc">Diagnóstico, orientação sobre precificação, direcionamento de posicionamento de comunicação e marca na presença digital.</p>
             </li>
             <li>
-              <strong>Criação do site profissional</strong>
+              <strong>Criação do site</strong>
               <p class="list-desc" role="text">
                 {textoInvestimentoInicial && <>{textoInvestimentoInicial}<br/></>}
-                Foco estratégico em desempenho no Instagram.<br/>
-                1 ano de domínio gratuito (ex: psi-{nomePsicologa.toLowerCase()}.com.br). Após esse período: R$40/ano.
+                Desenvolvimento de site com configuração técnica para anunciar.<br/>
+                Auxílio de configuração do domínio (ex: psi-{nomePsicologa.toLowerCase()}.com.br). Valor do domínio: R$40/ano.
               </p>
             </li>
             <li>
-              <strong>Configuração técnica para anúncios</strong>
-              <p class="list-desc">Suporte e configuração de contas profissionais de anúncios no Instagram.<br/>Preparação técnica do site para integração com o Instagram Ads.</p>
+              <strong>Configuração na plataforma de anúncio</strong>
+              <p class="list-desc">Auxílio na criação e configuração do gerenciador de anúncios da Meta para anunciar no Instagram.</p>
             </li>
           </ul>
         </div>
       </details>
+
+      <!-- SINALIZAÇÃO: 3º ao 12º mês -->
+      <div class="phase-divider phase-divider--next">
+        <div class="phase-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>3º ao 12º mês</span>
+        </div>
+      </div>
 
       <!-- ITEM 2: Orçamento de anúncios (Fechado por padrão) -->
       <details class="accordion-item">
@@ -69,18 +92,29 @@ const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, Orç
       <!-- ITEM 3: Recorrência do Serviço (Fechado por padrão) -->
       <details class="accordion-item">
         <summary class="accordion-trigger">
-          <h3>Investimento mensal: 2 meses grátis.</h3>
+          <h3>Serviços Recorrentes: A partir de R$95/mês</h3>
           <span class="chevron">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </span>
         </summary>
         <div class="accordion-content">
           <ul class="main-list">
+            <p class="text-block accordion-intro">
+              Assessoria de gestão, hospedagem do site (manutenção e disponibilidade), administração das contas de anúncio e ajustes no site para otimizar resultados.
+            </p>
             <li>
-              <p class="list-desc">Após esse período, o valor mensal será negociado, mas ele será, no máximo, o valor do seu pacote mensal de sessões.</p>
+              <strong>3ª a 5ª mensalidade: R$95/mês</strong>
+              <p class="list-desc">Foco em ajudar no seu crescimento da prática clínica com uma mensalidade menor</p>
             </li>
             <li>
-              <p class="list-desc">O valor negociado visa ao seu crescimento na clínica com uma parceria de longo prazo conosco. Não é abusivo, é proporcional a sua renda adicional gerada pelo nosso trabalho. Nosso contrato não tem fidelidade.</p>
+              <strong>6ª a 8ª mensalidade: R$195/mês</strong>
+              <p class="list-desc" role="text">
+                Acreditamos que o retorno do seu investimento será mais rápido do que do psicólogo do estudo de caso, porque temos muito mais informações do que dá certo.
+              </p>
+            </li>
+            <li>
+              <strong>9ª a 12ª mensalidade: R$295/mês</strong>
+              <p class="list-desc">Maturação do investimento feito conosco e acompanhamento estratégico.</p>
             </li>
           </ul>
         </div>
@@ -94,7 +128,7 @@ const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, Orç
       <!-- Card A -->
       <article class="info-card">
         <h4>Por que estes valores?</h4>
-        <p>Já comprovamos a capacidade de gerar um renda adicional de R$5.195/mês. Portanto, um investimento inicial de R$1.950 é um valor justo para um crescimento sustentável da sua clínica.</p>
+        <p>Já comprovamos a capacidade de gerar um renda adicional de R$5.195/mês. Portanto, um investimento de até R$495/mês é um valor mais do que justo para um crescimento sustentável.</p>
       </article>
 
       <!-- Card B -->
@@ -115,6 +149,11 @@ const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, Orç
     margin-right: auto !important;
   }
 
+  .accordion-intro {
+    font-weight: 500;
+    color: #334155;
+  }
+
   @media (min-width: 1024px) {
     .wrapper-proposta {
       max-width: 900px; 
@@ -128,6 +167,51 @@ const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, Orç
 
   .title {
     margin: 0;
+  }
+
+  /* ==========================================================================
+     Sinalizadores de Período (Badges + Linha Divisória)
+     ========================================================================== */
+  .phase-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: -0.35rem;
+  }
+
+  .phase-divider--next {
+    margin-top: 1.4rem;
+  }
+
+  .phase-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.42rem 0.95rem;
+    border-radius: 999px;
+    background-color: var(--color-background-alt);
+    background-color: color-mix(in srgb, var(--color-primary) 8%, var(--color-background));
+    border: 1px solid #CBD5E1;
+    border-color: color-mix(in srgb, var(--color-primary) 22%, #E2E8F0);
+    color: var(--color-primary);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .phase-badge svg {
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  .phase-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, #CBD5E1 0%, rgba(226, 232, 240, 0.25) 100%);
   }
 
   /* ==========================================================================
@@ -217,11 +301,6 @@ const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, Orç
     animation: fadeInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  .accordion-intro {
-    font-weight: 500;
-    color: #334155;
-  }
-
   @keyframes fadeInDown {
     0%   { opacity: 0; transform: translateY(-8px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -241,6 +320,7 @@ const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, Orç
 
   .main-list > li {
     margin-bottom: 1.25rem;
+    margin-top: 1.15rem;
     padding-left: 1.5rem;
     position: relative;
   }
@@ -312,6 +392,15 @@ const { nomePsicologa, textoInvestimentoInicial, PreçoInvestimentoInicial, Orç
     .wrapper-proposta{
       margin-top: 2rem;
       padding: 1rem;
+    }
+
+    .phase-divider--next {
+      margin-top: 0.85rem;
+    }
+
+    .phase-badge {
+      padding: 0.35rem 0.8rem;
+      font-size: 0.825rem;
     }
 
     .accordion-trigger {
