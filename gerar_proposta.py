@@ -3,6 +3,12 @@ import os
 import argparse
 from datetime import datetime, timedelta
 from typing import List, Dict, Any
+import sys
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
 
 ARQUIVO_JSON = 'src/data/propostas.json'
 

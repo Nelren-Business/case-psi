@@ -8,5 +8,25 @@
     "PreçoInvestimentoInicial": "495",
     "OrçamentoAdsMensal": "180",
     "ValidadeProposta": "7"
+  },
+  {
+    "slug": "41jww7reaygn",
+    "nome": "Letícia",
+    "validade": "2026-12-02T23:59:59",
+    "textoIntroducao": "",
+    "textoInvestimentoInicial": "",
+    "PreçoInvestimentoInicial": "1.950",
+    "OrçamentoAdsMensal": "180",
+    "ValidadeProposta": "7"
+  },
+  {
+    "slug": "0r73mr6dcmto",
+    "nome": "Letícia",
+    "validade": "2026-12-02T23:59:59",
+    "textoIntroducao": "",
+    "textoInvestimentoInicial": "",
+    "PreçoInvestimentoInicial": "1.950",
+    "OrçamentoAdsMensal": "180",
+    "ValidadeProposta": "7"
   }
 ]
