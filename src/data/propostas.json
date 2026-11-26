@@ -108,5 +108,15 @@
     "PreçoInvestimentoInicial": "495",
     "OrçamentoAdsMensal": "180",
     "ValidadeProposta": "7"
+  },
+  {
+    "slug": "o26d8ql739ko",
+    "nome": "Beatriz",
+    "validade": "2026-12-10T23:59:59",
+    "textoIntroducao": "",
+    "textoInvestimentoInicial": "",
+    "PreçoInvestimentoInicial": "495",
+    "OrçamentoAdsMensal": "180",
+    "ValidadeProposta": "7"
   }
 ]
